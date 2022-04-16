@@ -1,0 +1,307 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
+
+\begin{document}
+%
+\title{Reconocimiento de Entidades Nombradas}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Luis Ernesto Ibarra Vázquez\inst{1} \and
+Luis Enrique Dalmau Coopat\inst{1}}
+%
+%\authorrunning{F. Author et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{Universidad de La Habana, La Habana, Cuba}
+%
+\maketitle              % typeset the header of the contribution
+%
+\begin{abstract}
+%The abstract should briefly summarize the contents of the paper in
+%150--250 words.
+La extracción de entidades nombradas consiste en la extracción y clasificación de entidades en un texto. Este documento presenta una definición del problema además de introducir los principales retos enfrentados en estos problemas y qué técnicas existen para darle una respuesta lo más acertada posible. 
+%TODO Aumentar el tamaño del abstract
+
+\keywords{Entidades Nombradas  \and Aprendizaje de Máquina \and Procesamiento de Lenguaje Natural.}
+\end{abstract}
+%
+%
+%
+\section{Introducción}
+
+%TODO Hacer Introducción. Hace falta?
+
+\section{Entidad nombrada}
+
+La definición de entidad nombrada se puede ver formalmente en los designadores rígidos\cite{rigid_designator}, los cuales son términos que designan la misma cosa en todos los mundos posibles en que esa cosa existe. Generalmente inluyen nombres propios y términos científicos tales como nombre de sustancias, elementos químicos. Esta definición es solo un punto de partida para el análisis de las entidades ya que se puede relajar  para abarcar más elementos como entidades, por ejemplo, las expresiones temporales y numéricas, como cantidades de dinero y unidades de medida, se toman como entidades nombradas. 
+
+\subsection{Ejemplos}
+
+\begin{itemize}
+
+\item Universidad de La Habana: Entidad nombrada
+\item universidad: No es una entidad nombrada, puede representar entidades diferentes.
+\item Facultad de Matemática y Computación de la Universidad de La Habana: Entidad nombrada
+\item UH: Entidad nombrada
+\end{itemize}
+
+\subsection{Problemas}
+
+En los ejemplos anteriores se evidencian algunos de los problemas que tiene la extracción de entidades nombradas. En el \emph{Universidad de La Habana} se presentan dos entidades \emph{solapadas}, la entidad completa como organización y La Habana como lugar, sin embargo la más correcta es la de universidad como organización. Para mitigar este problema las entidades nombradas se toman como una sucesión de tokens que no se solapan. Otro problema reflejado en el ejemplo de \emph{universidad} es la falta de la capacidad de inferir a la entidad a la que se refieren, lo cual puede traer que se pierda mucha información en el análisis del texto. Además del problema de solapamiento, se encuentra el problema de las entidades anidadas. En el ejemplo de \emph{Facultad de Matemática y Computación de la Universidad de La Habana} se presentan dos entidades las cuales tienen sentido de manera independiente \emph{Facultad de Matemática y Computación} y \emph{Universidad de La Habana}, ver cuando estas entidades van juntas o separadas constituye un problema en la extracción de entidades.
+
+\section{Categorías}
+
+Las categorías son grupos a los que las entidades nombradas pertenecen. La variedad de estos grupos y su interrelacción entre ellos está dada principalmente por el contexto del problema a tratar. Las principales categorías son: \textbf{persona}, \textbf{organización} y \textbf{lugar}, estas se pueden encuentran en todo texto independientemente del tema que traten aunque existen varias definiciones de categorías llegando algunas incluso a formar jerarquías. Las categorías también pueden crearse en dependencia del contexto en que se vaya a procesar el texto, especializándolas más para lograr extraer información más exactas, esto ocurre principalmente en el campo de la química y la biología en la cual los nombres de las sustancias se califican en categorías afines. Un ejemplo de una definición general jerárquica se encuentra en la versión de \emph{Sekine}\cite{sekine} que cuenta con unos 200 subtipos.
+
+\subsection{Ejemplos}
+
+\begin{itemize}
+
+\item Universidad de La Habana: Organización
+\item La Habana: Lugar
+\item Nombre Random: Persona %TODO Poner nombre de verdad :(
+
+\end{itemize}
+
+\subsection{Problemas}
+
+La asingación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. %TODO Poner ejemplo de esto
+
+\section{Definición del problema}
+
+Dada las definiciones anteriores el problema de Reconocimiento de Entidades Nombradas se puede definir como la extracción y clasificación de las entidades nombradas de un texto. Como dice en la definición, el problema se divide en dos partes fundamentales: extracción y clasificación.
+
+\subsection{Extracción de entidades}
+
+La extracción de entidades consiste en extraer del texto las entidades existentes en él ya anotadas con diferentes metadatos como la parte de oración que represena, la posición dentro de una entidad entre otras. En este proceso intervienen dos etapas que se interrelacionan entre sí: \emph{chuncking}\cite{chunking} y \emph{Part-of-Speech (POS) Tagging}\cite{postag}.
+
+\subsubsection{POS Tagging}
+
+El objetivo de este subproblema es anotar una secuencia de tokens con la parte de la oración que representa, estas partes dependen del idioma y del conjunto seleccionado por el personal que realice el software en dependencia de la necesidad del software creado. En este caso nos enfocaremos en el idioma inglés en el cual existen 9 tipos de POS importantes de los que sobrealen: sustantivo, verbo, adjetivo, preposición, pronombre y adverbio. En la literatura existen otros conjuntos de etiquetas basados en las partes mencionadas anteriores pero que agregan otros datos como si se está en plural o singular, tiempo del verbo etc, entre estos se encuentran:
+
+\begin{itemize}
+\item Penn Treebank \cite{pennpostag}
+\item Brown Corpus \cite{brownpostag}
+\end{itemize}
+
+Por ejemplo la frase \emph{I study at University of Havana} produce la siguiente salida: \emph{I|PRON study|VERB at|ADP University|PROPN of|ADP Havana|PROPN}.
+
+Para resolver este problema se han ideado diferentes aproximaciones:
+
+\begin{itemize}
+
+\item Expersiones regulares: Las expresiones regulares son usadas principalemente a la hora de anotar cantidades de dinero o entidades que empiezan con honoríficos como Sr, Dr, MsC, entre otras en las cuales existe una alta probabilidad de que la anotación sea correcta.
+
+\item Aprendizaje de máquina: Se han usado diferentes algoritmos para este problema como SVM, perceptron, nearest-neighbor, llegando a una precisión superior del 95\% \cite{postag}
+
+\item Modelos ocultos de Markov (Hidden Marcov Models HMM): En el caso más simple este modelo se puede ver como un grafo dirigido en el cual los estados representan las partes de la oración y las aristas representan las posibles transiciones del estado actual al siguiente, estas aristas están ponderadas con la probabilidad de cuál es el estado siguiente. El estado no observable representa la etiqueta POS y el estado observable representa el token actual \cite{hmm}.
+
+\end{itemize}
+
+\subsubsection{Chunking}
+
+%Esta etapa del proceso ocurre luego del POS-tagging y se encarga de agrupar los tokens antodados del POS en partes más significativas de la oración creando un árbol cuya raíz es el texto y las hojas los tokens anotados. Siguiendo el ejemplo: \emph{I|PRON study|VERB at|ADP University|PROPN of|ADP Havana|PROPN} se convierte en Fig.\ref{syntaxtree}
+%
+%\begin{figure}
+%\includegraphics[width=\textwidth]{syntaxtree.jpg}
+%\caption{Árbol de sintaxis} \label{syntaxtree}
+%\end{figure}
+
+%Sobre este árbol se realizan diferentes algoritmos para la extracción de entidades nombradas:
+
+Esta etapa se puede ver como un problema de segmentación en la cual se quiere particionar los tokens anotados previemente con las etiquetas POS en conjuntos que identifiquen las entidades nombradas.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{namedentity.jpg}
+\caption{Chunking} \label{chunkingfig}
+\end{figure}
+
+Para lograr esta anotación se utilizan varias aproximaciones:
+
+\begin{itemize}
+
+\item Gramáticas: Se les da gramáticas en las que los términos finales son las anotaciones de la parte de la
+oración y luego son parseadas en dependencia de estas. Algunos parsers proveen la capacidad de 
+tener expresiones regulares en su interior aumentando la expresividad \cite{nltkgrammar}
+
+\item Aprendizaje de Máquina: Generalmente se realiza un aprendizaje supervisado mediante un conjunto de datos, las entradas del conjunto de datos varían pero las más simples es una tupla \emph{(palabra, IOB tag)}.  IOB es una anotación va acompañada en cada token y representa si una parte esta dentro (In), fuera (Outside) o inicio (Begining) de un pedazo o entidad.
+
+\end{itemize}
+
+\subsection{Clasificación de entidades}
+
+Esta parte del problema es la encargada de clasificar todas las entidades extraídas del texto en las diferentes categorías seleccionadas. La más ampliamente usada es aprendizaje de máquina, en esta se utiliza el aprendizaje supervisado para elaborar una función que dada un texto anotado devuelva las categorías a las que pertenecen estas, entre los algoritmos que se pueden utilizar encuentran:
+
+\begin{itemize}
+
+\item K-Nearest Neighbor
+\item Árboles de decisión
+\item Naive Bayes
+\item Random Forest
+\item Regresión Logística (Con estrategias para soportar múltiples clases)
+\item SVM (Con estrategias para soportar múltiples clases)
+
+\end{itemize}
+
+
+\section{Problemas}
+
+La extracción de entidades nombradas incurren en diferentes problemas uno de ellos está relacionado principalmente con el corpus usado para el entrenamiento del sistema. En general los corpus existentes se han entrenado en un ambiente relativamente cerrado y uniforme, por ejemplo, Wikipedia, periódicos, artículos científicos. Esto tiene como consecuencia que si se usa este sistema en un ambiente no relacionado o estructurado de manera similar el rendimiento baje. Un ejemplo clásico en el cual esto ocurre es en Twitter, debido a la gran cantidad de temas en los que se habla, la cantidad limitada de 140 caracteres, la ausencia de reglas para escribir,  entre otros elementos hace que los NER se desempeñen de manera pobre. Este problema es abordado en \cite{tweeter}, en este artículo sus escritores lograron reducir los errores en el POS hasta un 41\% con respecto al Standford POS Tagger y logrando una métrica F1 final de 0.59 en comparación con 0.29 del Standford NER.
+
+Otro problema relacionado con el corpus es el inherente error humano y la propia ambigüedad del lenguaje, esto hace que en oraciones con la misma sintaxis y semántica las anotaciones difieran por errores humanos, pudiendo llevar en el peor de los casos a variar el rendimiento del sistema en un 5\% \cite{posdecisiontree}. Aunque en general los anotadores humanos son hasta ahora la manera más fiable de obtener información anotada correctamente, esto requiere del trabajo manual de estos lo cual se hace en muchos casos impracticable debido al gran volumen de datos que se procesa hoy en día.
+
+Una dificultad a la hora del procesamiento del Lenguaje Natural y por ende la extración de entidades nombradas es el idioma, generalmente los a
+
+\section{Conclusiones}
+
+
+
+%\subsubsection{Sample Heading (Third Level)} Only two levels of
+%headings should be numbered. Lower level headings remain unnumbered;
+%they are formatted as run-in headings.
+%
+%\paragraph{Sample Heading (Fourth Level)}
+%The contribution should contain no more than four levels of
+%headings. Table~\ref{tab1} gives a summary of all heading levels.
+%
+%\begin{table}
+%\caption{Table captions should be placed above the
+%tables.}\label{tab1}
+%\begin{tabular}{|l|l|l|}
+%\hline
+%Heading level &  Example & Font size and style\\
+%\hline
+%Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
+%1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
+%2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
+%3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
+%4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
+%\hline
+%\end{tabular}
+%\end{table}
+%
+%
+%\noindent Displayed equations are centered and set on a separate
+%line.
+%\begin{equation}
+%x + y = z
+%\end{equation}
+%Please try to avoid rasterized images for line-art diagrams and
+%schemas. Whenever possible, use vector graphics instead (see
+%Fig.~\ref{fig1}).
+%
+%\begin{figure}
+%\includegraphics[width=\textwidth]{userPhoto.jpg}
+%\caption{A figure caption is always placed below the illustration.
+%Please note that short captions are centered, while long ones are
+%justified by the macro package automatically.} \label{fig1}
+%\end{figure}
+%
+%\begin{theorem}
+%This is a sample theorem. The run-in heading is set in bold, while
+%the following text appears in italics. Definitions, lemmas,
+%propositions, and corollaries are styled the same way.
+%\end{theorem}
+%%
+%% the environments 'definition', 'lemma', 'proposition', 'corollary',
+%% 'remark', and 'example' are defined in the LLNCS documentclass as well.
+%%
+%\begin{proof}
+%Proofs, examples, and remarks have the initial word in italics,
+%while the following text appears in normal font.
+%\end{proof}
+%For citations of references, we prefer the use of square brackets
+%and consecutive numbers. Citations using labels or the author/year
+%convention are also acceptable. The following bibliography provides
+%a sample reference list with entries for journal
+%articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
+%book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
+%and a homepage~\cite{ref_url1}. Multiple citations are grouped
+%\cite{ref_article1,ref_lncs1,ref_book1},
+%\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
+%
+% ---- Bibliography ----
+%
+% BibTeX users should specify bibliography style 'splncs04'.
+% References will then be sorted and formatted in the correct style.
+%
+% \bibliographystyle{splncs04}
+% \bibliography{mybibliography}
+%
+\begin{thebibliography}{8}
+%\bibitem{ref_article1}
+%Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
+%
+%\bibitem{ref_lncs1}
+%Author, F., Author, S.: Title of a proceedings paper. In: Editor,
+%F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
+%Springer, Heidelberg (2016). \doi{10.10007/1234567890}
+%
+%\bibitem{ref_book1}
+%Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
+%Location (1999)
+%
+%\bibitem{ref_proc1}
+%Author, A.-B.: Contribution title. In: 9th International Proceedings
+%on Proceedings, pp. 1--2. Publisher, Location (2010)
+
+\bibitem{sekine}
+New York University, Natural Language Processing Section, \url{https://nlp.cs.nyu.edu/ene/version7\_1\_0Beng.html}. Accedido 13
+de abril 2022
+
+\bibitem{rigid_designator}
+Wikipedia, \url{https://en.wikipedia.org/wiki/Rigid\_designator}. Accedido 13
+de abril 2022
+
+\bibitem{chunking}
+Wikipedia, \url{https://en.wikipedia.org/wiki/Shallow\_parsing}. Accedido 12 de abril
+2022
+
+\bibitem{postag}
+Wikipedia, \url{https://en.wikipedia.org/wiki/Part-of-speech\_tagging}. Accedido 13 de abril
+2022
+
+\bibitem{pennpostag}
+University of Pensilvania Departament of Linguistics, \url{https://www.ling.upenn.edu/courses/Fall\_2003/ling001/penn\_treebank\_pos.html}. Accedido 13 de abril 2022
+
+\bibitem{hmm}
+Towards Data Science, \url{https://towardsdatascience.com/part-of-speech-tagging-for-beginners-3a0754b2ebba}. Accedido 13 de abril
+2022
+
+\bibitem{brownpostag}
+Wikipedia, \url{https://en.wikipedia.org/wiki/Brown\_Corpus\#Part-of-speech\_tags\_used}. Accedido 13 de abril 2022
+
+\bibitem{ref_url1}
+LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
+Oct 2017
+
+\bibitem{nltkgrammar}
+Steven Bird, Ewan Klein, and Edward Loper: Natural Language Processing with Python. Online Edition. \url{https://www.nltk.org/book/ch07.html}
+
+\bibitem{tweeter}
+Alan Ritter, Sam Clark, Mausam and Oren Etzioni: Named Entity Recognition in Tweets:
+An Experimental Study. University of Washington Seattle, WA 98125, USA
+
+\bibitem{posdecisiontree}
+Lluís Màrquez i Villodre: Part-of-speech Tagging: A Machine Learning Approach based on Decision Trees. Departament de Llenguatges i Sistemes Informàtics de la Universitat Politècnica de Catalunya, Barcelona (1999)
+
+
+\end{thebibliography}
+\end{document}
