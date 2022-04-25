@@ -55,11 +55,11 @@ En el documento se presenta primero las dificultades generales del Procesamiento
 
 \section{Procesamiento de Lenguaje Natural}
 
-Últimamente estamos oyendo hablar mucho del procesamiento del lenguaje natural (NLP por sus siglas en inglés) y ahora más en este mundo digital. Sin embargo, el NLP es una disciplina que cuenta con más de 50 años de investigación y desarrollo.
+Últimamente estamos oyendo hablar mucho del procesamiento del lenguaje natural (NLP por sus siglas en inglés). Sin embargo, el NLP es una disciplina que cuenta con más de 50 años de investigación y desarrollo.\emph{•} \cite{nlp}
 
 ¿Qué es el procesamiento de lenguaje natural?
 
-El Procesamiento del Lenguaje Natural es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o el chino.
+El Procesamiento del Lenguaje Natural es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o cualquier otro idioma.
 
 Virtualmente, cualquier lengua humana puede ser tratada por los ordenadores. Lógicamente, limitaciones de interés económico o práctico hace que solo las lenguas más habladas o utilizadas en el mundo digital tengan aplicaciones en uso.
 
@@ -69,25 +69,31 @@ Las lenguas humanas pueden expresarse por escrito (texto), oralmente (voz) y tam
 
 Los audios, aunque estén en formato digital, hay que procesarlos para transcribirlos en letras o caracteres y, a partir de ahí, entender la pregunta. El proceso de respuesta es el inverso: primero se elabora la oración y luego se “sintetiza la voz”.
 
-Por cierto, la voz artificial cada vez suena más humana, con inflexiones tonales y prosódicas que imitan la producción humana.[https://www.iic.uam.es/inteligencia/que-es-procesamiento-del-lenguaje-natural/]
+Por cierto, la voz artificial cada vez suena más humana, con inflexiones tonales y prosódicas que imitan la producción humana.
 
-Modelos para procesamiento del lenguaje natural
+
+
+\subsection{Modelos para procesamiento del lenguaje natural}
 
 Tratar computacionalmente una lengua implica un proceso de modelización matemática. Los lingüistas computacionales se encargan de la tarea de “preparar” el modelo lingüístico para que posteriormente se implemente en un código eficiente y funcional. Básicamente, existen dos aproximaciones generales al problema de la modelización lingüística:
+\begin{itemize}
 
-Modelos Lógicos: gramáticas
+
+\item{Modelos Lógicos: gramáticas
 
 Los lingüistas escriben reglas de reconocimiento de patrones estructurales, empleando un formalismo gramatical concreto. Estas reglas, en combinación con la información almacenada en diccionarios computacionales, definen los patrones que hay que reconocer para resolver la tarea (buscar información, traducir, etc.).
 
-Estos modelos lógicos pretenden reflejar la estructura lógica del lenguaje y surgen a partir de las teorías de N. Chomsky en los años 50. 
+Estos modelos lógicos pretenden reflejar la estructura lógica del lenguaje y surgen a partir de las teorías de N. Chomsky en los años 50.} 
 
 
-Modelos probabilísticos del lenguaje natural: basados en datos
+\item{Modelos probabilísticos del lenguaje natural: basados en datos
 
 La aproximación es a la inversa: los lingüistas recogen colecciones de ejemplos y datos (corpus) y a partir de ellos se calculan las frecuencias de diferentes unidades lingüísticas (letras, palabras, oraciones) y su probabilidad de aparecer en un contexto determinado. Calculando esta probabilidad, se puede predecir cuál será la siguiente unidad en un contexto dado, sin necesidad de recurrir a reglas gramaticales explícitas.
 
-Es el paradigma de “aprendizaje automático” que se ha impuesto en las últimas décadas en Inteligencia Artificial: los algoritmos infieren las posibles respuestas a partir de los datos observados anteriormente en el corpus.
-Componentes del procesamiento del lenguaje natural
+Es el paradigma de “aprendizaje automático” que se ha impuesto en las últimas décadas en Inteligencia Artificial: los algoritmos infieren las posibles respuestas a partir de los datos observados anteriormente en el corpus.}
+\end{itemize}
+
+\subsection{Componentes del procesamiento del lenguaje natural}
 
 A continuación, vemos algunos de los componentes del procesamiento del lenguaje natural. No todos los análisis que se describen se aplican en cualquier tarea de NLP, sino que depende del objetivo de la aplicación.
 
@@ -103,17 +109,10 @@ Un análisis morfológico, sintáctico, semántico o pragmático se aplicará de
 
  %HINT Características del procesamiento del Lenguaje Natural según su estructura y especificidades de cada idioma
  %HINT Dificultades en el procesamiento
- 
-En el ‘Introduction to Natural Language Processing‘ de Jacob Eisenstein.
+En cuanto al NLP podemos darnos cuenta rapidamente de varios problemas que surgen dada la inmensa cantidad de diferencias entre los distintos idiomas existentes en nuestro planeta. No es igual el uso de pronombres en todas las lenguas , incluso en algunas estos se encuentran incluidos en la palabra a la que refieren como se dan los casos en el idioma alemán.
 
-En el primer capítulo, donde el autor aporta unas ideas de carácter general, dedica una ‘esquinita’ a mencionar cuatro problemáticas éticas del procesamiento del lenguaje natural. Son estas:
+Incluso podemos tener en cuenta que hay palabras existentes en algunos idiomas que en otros no, al igual que contracciones y palabras nativas de la jerga local y no siempre los organismos de cada lengua se encuentran al dia con la evolucion de su respectivo idioma.
 
-    Accesibilidad: Es decir, si el tratamiento del lenguaje se hace de forma general o para colectivos específicos. Por ejemplo, ¿Qué idiomas se tratan mediante lenguaje natural? ¿Puede abrir esto alguna forma de brecha digital entre países o culturas?
-    Sesgos: Es uno de los problemas mencionados habitualmente en las consideraciones éticas sobre la Inteligencia Artificial. En este caso, y como hablamos específicamente de procesamiento de lenguaje natural, lo que el autor insinúa es que es posible que se trasladen al tratamiento automatizado del lenguaje sesgos existentes en nuestra forma de hablar, pensando, me imagino en, por ejemplo, ‘dejes’ no inclusivos de algún tipo.
-    Fuerza de trabajo: Debo reconocer que no estoy seguro de entender del todo lo que plantea el autor en este caso concreto. En esencia, se pregunta dos cosas que no veo del todo conectadas. Por un lado, el origen de los conjuntos de datos y anotaciones sobre las que se trabaja para entrenar al algoritmo. Por otro, si el beneficio que se obtenga del procesamiento de lenguaje natural se comparte con todos aquellos que han aportado algo (no se si se refiere a trabajadores como tal, o a personas que han aportado sus conversaciones o textos l que conectaría con la primera cuestión).
-    Privacidad y libertad de Internet: ¿Afecta el procesamiento de lenguaje natural a gran escala al derecho a comunicaciones privadas y gratuitas? ¿Qué papel puede jugar esta tecnología en regímenes totalitarios o intervencionistas?
-
-No veo del todo nítidas todas las problemáticas que el autor intenta plantear pero me ha llamado la atención este foco ético en NLP que además me parece saludable. Seguiré atento al desarrollo que Eisenstein pueda hacer más adelante en el libro o que pueda encontrar en otra fuente.[Autor: Ignacio G.R. Gavilán  https://ignaciogavilan.com/cuatro-problemas-eticos-ligados-al-procesamiento-del-lenguaje-natural-nlp/]
 
 \section{Entidad nombrada}
 
@@ -330,6 +329,8 @@ Otro problema relacionado con el corpus es el inherente error humano y la propia
 %\bibitem{ref_proc1}
 %Author, A.-B.: Contribution title. In: 9th International Proceedings
 %on Proceedings, pp. 1--2. Publisher, Location (2010)
+
+\bibitem{nlp}\url{https://www.iic.uam.es/inteligencia/que-es-procesamiento-del-lenguaje-natural/}.Accedido 24 de abril 2022
 
 \bibitem{sekine}
 New York University, Natural Language Processing Section, \url{https://nlp.cs.nyu.edu/ene/version7\_1\_0Beng.html}. Accedido 13
