@@ -47,14 +47,73 @@ La extracción de entidades nombradas consiste en la extracción y clasificació
 %
 \section{Introducción}
 
-En el contexto actual con el desarrollo de las tecnologías, la explosión de información no estructurada en la web ha hecho que sea necesario un procesamiento para lograr extraer información por medios computacionales. De esto se encarga Procesamiento de Lenguaje Natural, el cual es una rama de Inteligegncia Artificial. Entre la información que se quiere extraer se encuentra cuáles son las entidades que más significado semántico aportan al texto y cuáles son las categorías a las que pertenece dicha entidad.
+En el contexto actual con el desarrollo de las tecnologías, la explosión de información no estructurada en la web ha hecho que sea necesario un procesamiento para lograr extraer información por medios computacionales. De esto se encarga el Procesamiento de Lenguaje Natural, el cual es una rama de Inteligencia Artificial. Entre la información que se quiere extraer cuáles son las entidades que más significado semántico aportan al texto, una de esta información es saber las entidades que se encuentran en este y cuáles son las categorías a las que pertenece dicha entidad.
 
-En el documento se presenta primero las dificultades generales del Procesamiento de Lenguaje Natural. Luego se introduce el tema sobre la Extracción de Entidades Nombradas y los algoritmos usados para resolverlos además de los problemas comunes que se enfrentan a la hora de la extracción de entidades. También se trata sobre posibles usos que puede tener dicha extracción para la resolución de otros problemas.
+La solución de dicho problema traería consigo una manera de estructurar efectivamente muchos de estos documentos no estructurados pudiendo llegar a un estado de organización de los documentos presentes en la web agilizando diferentes tareas. En la recuperacion de información se pueden usar las entidades nombradas para mejorar el resultado obtenido por los buscadores, en la medicina se pueden encontrar las relaciones existentes entre diferentes entidades creando una base de datos que pueda servir como onotlogía para futuras consultas.
+
+En el documento se presenta primero las dificultades generales del Procesamiento de Lenguaje Natural. Luego se introduce el tema sobre la Extracción de Entidades Nombradas y los algoritmos usados para resolverlos además de los problemas comunes que se enfrentan a la hora de la extracción de entidades.
 
 \section{Procesamiento de Lenguaje Natural}
 
+Últimamente estamos oyendo hablar mucho del procesamiento del lenguaje natural (NLP por sus siglas en inglés) y ahora más en este mundo digital. Sin embargo, el NLP es una disciplina que cuenta con más de 50 años de investigación y desarrollo.
+
+¿Qué es el procesamiento de lenguaje natural?
+
+El Procesamiento del Lenguaje Natural es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o el chino.
+
+Virtualmente, cualquier lengua humana puede ser tratada por los ordenadores. Lógicamente, limitaciones de interés económico o práctico hace que solo las lenguas más habladas o utilizadas en el mundo digital tengan aplicaciones en uso.
+
+Pensemos en cuántas lenguas hablan Siri (20) o Google Assistant (8). El inglés, español, alemán, francés, portugués, chino, árabe y japonés (no necesariamente en este orden) son las que cuentan con más aplicaciones que las entienden. Google Translate es la que más lenguas trata, superando el centenar… pero hay entre 5000 y 7000 lenguas en el mundo.
+
+Las lenguas humanas pueden expresarse por escrito (texto), oralmente (voz) y también mediante signos. Naturalmente, el NLP está más avanzado en el tratamiento de textos, donde hay muchos más datos y son más fáciles de conseguir en formato electrónico.
+
+Los audios, aunque estén en formato digital, hay que procesarlos para transcribirlos en letras o caracteres y, a partir de ahí, entender la pregunta. El proceso de respuesta es el inverso: primero se elabora la oración y luego se “sintetiza la voz”.
+
+Por cierto, la voz artificial cada vez suena más humana, con inflexiones tonales y prosódicas que imitan la producción humana.[https://www.iic.uam.es/inteligencia/que-es-procesamiento-del-lenguaje-natural/]
+
+Modelos para procesamiento del lenguaje natural
+
+Tratar computacionalmente una lengua implica un proceso de modelización matemática. Los lingüistas computacionales se encargan de la tarea de “preparar” el modelo lingüístico para que posteriormente se implemente en un código eficiente y funcional. Básicamente, existen dos aproximaciones generales al problema de la modelización lingüística:
+
+Modelos Lógicos: gramáticas
+
+Los lingüistas escriben reglas de reconocimiento de patrones estructurales, empleando un formalismo gramatical concreto. Estas reglas, en combinación con la información almacenada en diccionarios computacionales, definen los patrones que hay que reconocer para resolver la tarea (buscar información, traducir, etc.).
+
+Estos modelos lógicos pretenden reflejar la estructura lógica del lenguaje y surgen a partir de las teorías de N. Chomsky en los años 50. 
+
+
+Modelos probabilísticos del lenguaje natural: basados en datos
+
+La aproximación es a la inversa: los lingüistas recogen colecciones de ejemplos y datos (corpus) y a partir de ellos se calculan las frecuencias de diferentes unidades lingüísticas (letras, palabras, oraciones) y su probabilidad de aparecer en un contexto determinado. Calculando esta probabilidad, se puede predecir cuál será la siguiente unidad en un contexto dado, sin necesidad de recurrir a reglas gramaticales explícitas.
+
+Es el paradigma de “aprendizaje automático” que se ha impuesto en las últimas décadas en Inteligencia Artificial: los algoritmos infieren las posibles respuestas a partir de los datos observados anteriormente en el corpus.
+Componentes del procesamiento del lenguaje natural
+
+A continuación, vemos algunos de los componentes del procesamiento del lenguaje natural. No todos los análisis que se describen se aplican en cualquier tarea de NLP, sino que depende del objetivo de la aplicación.
+
+\begin{itemize}
+    \item Análisis morfológico o léxico. Consiste en el análisis interno de las palabras que forman oraciones para extraer lemas, rasgos flexivos, unidades léxica compuestas. Es esencial para la información básica: categoría sintáctica y significado léxico.
+    \item Análisis sintáctico. Consiste en el análisis de la estructura de las oraciones de acuerdo con el modelo gramatical empleado (lógico o estadístico).
+    \item Análisis semántico. Proporciona la interpretación de las oraciones, una vez eliminadas las ambigüedades morfosintácticas.
+    \item Análisis pragmático. Incorpora el análisis del contexto de uso a la interpretación final. Aquí se incluye el tratamiento del lenguaje figurado (metáfora e ironía) como el conocimiento del mundo específico necesario para entender un texto especializado.
+\end{itemize}
+
+Un análisis morfológico, sintáctico, semántico o pragmático se aplicará dependiendo del objetivo de la aplicación. Por ejemplo, un conversor de texto a voz no necesita el análisis semántico o pragmático. Pero un sistema conversacional requiere información muy detallada del contexto y del dominio temático.
+
+
  %HINT Características del procesamiento del Lenguaje Natural según su estructura y especificidades de cada idioma
  %HINT Dificultades en el procesamiento
+ 
+En el ‘Introduction to Natural Language Processing‘ de Jacob Eisenstein.
+
+En el primer capítulo, donde el autor aporta unas ideas de carácter general, dedica una ‘esquinita’ a mencionar cuatro problemáticas éticas del procesamiento del lenguaje natural. Son estas:
+
+    Accesibilidad: Es decir, si el tratamiento del lenguaje se hace de forma general o para colectivos específicos. Por ejemplo, ¿Qué idiomas se tratan mediante lenguaje natural? ¿Puede abrir esto alguna forma de brecha digital entre países o culturas?
+    Sesgos: Es uno de los problemas mencionados habitualmente en las consideraciones éticas sobre la Inteligencia Artificial. En este caso, y como hablamos específicamente de procesamiento de lenguaje natural, lo que el autor insinúa es que es posible que se trasladen al tratamiento automatizado del lenguaje sesgos existentes en nuestra forma de hablar, pensando, me imagino en, por ejemplo, ‘dejes’ no inclusivos de algún tipo.
+    Fuerza de trabajo: Debo reconocer que no estoy seguro de entender del todo lo que plantea el autor en este caso concreto. En esencia, se pregunta dos cosas que no veo del todo conectadas. Por un lado, el origen de los conjuntos de datos y anotaciones sobre las que se trabaja para entrenar al algoritmo. Por otro, si el beneficio que se obtenga del procesamiento de lenguaje natural se comparte con todos aquellos que han aportado algo (no se si se refiere a trabajadores como tal, o a personas que han aportado sus conversaciones o textos l que conectaría con la primera cuestión).
+    Privacidad y libertad de Internet: ¿Afecta el procesamiento de lenguaje natural a gran escala al derecho a comunicaciones privadas y gratuitas? ¿Qué papel puede jugar esta tecnología en regímenes totalitarios o intervencionistas?
+
+No veo del todo nítidas todas las problemáticas que el autor intenta plantear pero me ha llamado la atención este foco ético en NLP que además me parece saludable. Seguiré atento al desarrollo que Eisenstein pueda hacer más adelante en el libro o que pueda encontrar en otra fuente.[Autor: Ignacio G.R. Gavilán  https://ignaciogavilan.com/cuatro-problemas-eticos-ligados-al-procesamiento-del-lenguaje-natural-nlp/]
 
 \section{Entidad nombrada}
 
@@ -90,10 +149,9 @@ Las categorías son grupos a los que las entidades nombradas pertenecen. La vari
 
 \subsection{Problemas}
 
-La asingación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. Por ejemplo, se tienen las oraciones: \emph{said Harry You, CEO of HearingPoint} y \emph{For this year’s second quarter, You said the
-company’s} \cite{semi_sup_for_ner}, en estos campos ambos \emph{You} corresponden al nombre de una misma persona, pero el segundo se puede clasificar como un pronombre personal también, que en cuyo caso no sería una entidad nombrada.
+La asingación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. %TODO Poner ejemplo de esto
 
-\section{Extracción de Entidades Nombradas}
+\section{Definición del problema de Extracción de Entidades Nombradas}
 
 Dada las definiciones anteriores el problema de Reconocimiento de Entidades Nombradas se puede definir como la extracción y clasificación de las entidades nombradas de un texto. Como dice en la definición, el problema se divide en dos partes fundamentales: extracción y clasificación.
 
@@ -169,20 +227,6 @@ Esta parte del problema es la encargada de clasificar todas las entidades extra�
 
 \end{itemize}
 
-\subsection{Software}
-
-Para la extracción de entidades nombradas existen varios softwares, entre los más importantes se presentan:
-
-\begin{itemize}
-
-\item spaCy \cite{spacy_nlp}
-\item Standford NLP \cite{standford_nlp}
-\item GATE \cite{gate_nlp}
-\item Apache OpenNLP \cite{open_nlp}
-
-\end{itemize}
-
-Todas estas herramientas, además de reconocimiento de entidades, permiten realizar diferentes operaciones orientadas al procesamiento de lenguaje natural.
 
 \section{Problemas}
 
@@ -192,12 +236,7 @@ Otro problema relacionado con el corpus es el inherente error humano y la propia
 
 \section{Usos}
 
-La extracción de entidades nombradas puede ser utilizada para darle solución a diferentes problemas. Uno de ellos es que este procedimiento es el primer paso para la creación de un sistema de extracción de relaciones en los documentos, en los cuales una vez se tengan las entidades con sus clasificaciones es necesario buscar las diferentes relaciones que existen entre ellos para finalmente crear una base de datos estructurada con esta información. Un ejemplo de lo anterior se evidencia en el texto \emph{Facebook compró WhatsApp}, en el cual se evidencian dos orgnizaciones \emph{Facebook} y \emph{WhatsApp} y la relación \emph{comprar}.
-
-En la recuparación de información la extracción se puede usar para mejorar la búsqueda. Por ejemplo teniendo un corpus anotado con las entidades que aparecen en él la recuperación se puede realizar sobre estas, reduciendo la cantidad de términos necesarios para realizar la búsqueda enfocándose solo ellas, que son las que aportan el mayor significado semántico al texto. Además estas anotaciones se pueden usar en la clasificación del texto acorde su temática y con esto último es posible realizar búsquedas más precisas.
-
-En la construcción de un sistema de atención al cliente la extracción de entidades puede ayudar a dirigir la queja del cliente al departamento que se le asocie automáticamente. Esto es posible ya que en ests mensajes generalmente están los distintos productos y lugares en dónde se detectó el problema, pudiendo extraer esta información y posteriormente enviándole el mensaje al departamento asignado. Por ejemplo: \emph{Etecsa, la conexión en La Habana está terrible en el horario de 8 a 11 de la noche}, en el mensaje anterior la queja se enviará al departamento de Etecsa en La Habana.
-
+%TODO Poner usos
 
 \section{Conclusiones}
 
@@ -272,8 +311,8 @@ En la construcción de un sistema de atención al cliente la extracción de enti
 % BibTeX users should specify bibliography style 'splncs04'.
 % References will then be sorted and formatted in the correct style.
 %
-\bibliographystyle{splncs04}
-\bibliography{mybibliography}
+% \bibliographystyle{splncs04}
+% \bibliography{mybibliography}
 %
 \begin{thebibliography}{8}
 %\bibitem{ref_article1}
@@ -291,11 +330,6 @@ En la construcción de un sistema de atención al cliente la extracción de enti
 %\bibitem{ref_proc1}
 %Author, A.-B.: Contribution title. In: 9th International Proceedings
 %on Proceedings, pp. 1--2. Publisher, Location (2010)
-
-
-%\bibitem{ref_url1}
-%LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
-%Oct 2017
 
 \bibitem{sekine}
 New York University, Natural Language Processing Section, \url{https://nlp.cs.nyu.edu/ene/version7\_1\_0Beng.html}. Accedido 13
@@ -323,9 +357,9 @@ Towards Data Science, \url{https://towardsdatascience.com/part-of-speech-tagging
 \bibitem{brownpostag}
 Wikipedia, \url{https://en.wikipedia.org/wiki/Brown\_Corpus\#Part-of-speech\_tags\_used}. Accedido 13 de abril 2022
 
-
-\bibitem{ner_uses_1}
-Towards Data Science, \url{https://towardsdatascience.com/named-entity-recognition-applications-and-use-cases-acdbf57d595e}. Accedido 23 de abril de 2022
+\bibitem{ref_url1}
+LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
+Oct 2017
 
 \bibitem{nltkgrammar}
 Steven Bird, Ewan Klein, and Edward Loper: Natural Language Processing with Python. Online Edition. \url{https://www.nltk.org/book/ch07.html}
@@ -337,22 +371,6 @@ An Experimental Study. University of Washington Seattle, WA 98125, USA
 \bibitem{posdecisiontree}
 Lluís Màrquez i Villodre: Part-of-speech Tagging: A Machine Learning Approach based on Decision Trees. Departament de Llenguatges i Sistemes Informàtics de la Universitat Politècnica de Catalunya, Barcelona (1999)
 
-\bibitem{standford_nlp}
-Standford NLP, \url{https://stanfordnlp.github.io/CoreNLP/index.html}. Accedido 23 de abril de 2022
-
-\bibitem{spacy_nlp}
-Standford NLP, \url{https://spacy.io/}. Accedido 23 de abril de 2022
-
-\bibitem{gate_nlp}
-Standford NLP, \url{https://gate.ac.uk/}. Accedido 23 de abril de 2022
-
-\bibitem{open_nlp}
-Apache OpenNLP, \url{https://opennlp.apache.org/}. Accedido 23 de abril de 2022
-
-\bibitem{semi_sup_for_ner}
-Wenhui Liao, Sriharsha Veeramachaneni: A Simple Semi-supervised Algorithm For
-Named Entity Recognition. In: 9th International Proceedings
-on Proceedings, pp. 1--2. Publisher, Location (2010)
 
 \end{thebibliography}
 \end{document}
