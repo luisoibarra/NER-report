@@ -40,7 +40,6 @@ Luis Enrique Dalmau Coopat\inst{2}}
 %The abstract should briefly summarize the contents of the paper in
 %150--250 words.
 
-%TODO Agregarle algos obre NLP solo
 En este trabajo abordaremos acerca de una visión general de NLP, explicando en que se basa y los distintos modelos usados en dicha rama. Trataremos uno de los aspectos más desafiantes del NLP que es la extracción de entidades nombradas(NER).Esta consiste en la extracción y clasificación de entidades en un texto. Este documento presenta una definición del problema además de introducir los principales retos enfrentados en estos problemas y qué técnicas existen para darle una respuesta lo más acertada posible. 
 
 \keywords{Entidades Nombradas  \and Aprendizaje de Máquina \and Procesamiento de Lenguaje Natural.}
@@ -245,7 +244,7 @@ Todas estas herramientas, además de reconocimiento de entidades, permiten reali
 
 \section{Problemas Generales de NER}
 
-La extracción de entidades nombradas incurren en diferentes problemas uno de ellos está relacionado principalmente con el corpus usado para el entrenamiento del sistema. La creación de corupus de manera manual es uno de los principales problemas que tiene el aprendizaje supervisado, rango en el cual caen la mayoría de los algoritmos vistos. Para la creación del corpus, lingüistas necesitan dedicar varias horas en esta tarea para poder lograr una cantidad relevante de documentos anotados con calidad. En este aspecto se han hecho esfuerzos en métodos de aprendizaje semisupervisado que asistan en la tarea. %TODO Agreagr los esfuerzos realizados.
+La extracción de entidades nombradas incurren en diferentes problemas uno de ellos está relacionado principalmente con el corpus usado para el entrenamiento del sistema. La creación de corupus de manera manual es uno de los principales problemas que tiene el aprendizaje supervisado, rango en el cual caen la mayoría de los algoritmos vistos. Para la creación del corpus, lingüistas necesitan dedicar varias horas en esta tarea para poder lograr una cantidad relevante de documentos anotados con calidad. En este aspecto se han hecho esfuerzos en métodos de aprendizaje semisupervisado que asistan en la tarea \cite{SSFNER}. %TODO Agreagr los esfuerzos realizados.
 
 En general los corpus existentes se han entrenado en un ambiente relativamente cerrado y uniforme, por ejemplo, Wikipedia, periódicos, artículos científicos, esto tiene como consecuencia que si se usa este sistema en un ambiente no relacionado o estructurado de manera similar el rendimiento baje. Un ejemplo clásico en el cual esto ocurre es en Twitter, debido a la gran cantidad de temas en los que se habla, la cantidad limitada de 140 caracteres, la ausencia de reglas para escribir,  entre otros elementos hace que los NER se desempeñen de manera pobre. Este problema es abordado en \cite{tweeter}, en este artículo sus escritores lograron reducir los errores en el POS hasta un 41\% con respecto al Standford POS Tagger y logrando una métrica F1 final de 0.59 en comparación con 0.29 del Standford NER. 
 
@@ -273,98 +272,10 @@ Otras áreas en las que se usa la extracción de entidades son: \cite{ner_thesis
 
 \section{Conclusiones}
 
-%TODO Poner conclusiones
+Podemos afirmar entonces que el Reconocimiento de Entidades Nombradas es una herramienta de mucha utilidad y que nos facilita resolver muchos de nuestros problemas actuales. Llegar a un punto de dar una consulta a la computadora en lenguaje natural y que esta devuelva lo que queremos es algo que no tiene precio. Pero aún es muy pronto para este campo del NLP que a pesar de tener 50 años de investigación, el lenguaje natural en su expresión más innata como vimos en el caso de las redes sociales sigue siendo un gran desafío para la ciencia al que cada vez estamos más cerca de resolver.
 
-Podemos afirmar entonces que el Reconocimiento de Entidades Nombradas es una herramienta de mucha utilidad y que nos facilita resolver muchos de nuestros problemas actuales. Llegar a un punto de dar una consulta a la maquina en lenguaje natural y que esta devuelva lo que queremos es algo que no tiene precio. Pero aún es muy pronto para este campo del NLP que a pesar de tener 50 años de investigación, el lenguaje natural en su expresión más innata como vimos en el caso de las redes sociales sigue siendo un gran desafío para la ciencia al que cada vez estamos más cerca de resolver.
-
-%\subsubsection{Sample Heading (Third Level)} Only two levels of
-%headings should be numbered. Lower level headings remain unnumbered;
-%they are formatted as run-in headings.
-%
-%\paragraph{Sample Heading (Fourth Level)}
-%The contribution should contain no more than four levels of
-%headings. Table~\ref{tab1} gives a summary of all heading levels.
-%
-%\begin{table}
-%\caption{Table captions should be placed above the
-%tables.}\label{tab1}
-%\begin{tabular}{|l|l|l|}
-%\hline
-%Heading level &  Example & Font size and style\\
-%\hline
-%Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
-%1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
-%2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
-%3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
-%4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
-%\hline
-%\end{tabular}
-%\end{table}
-%
-%
-%\noindent Displayed equations are centered and set on a separate
-%line.
-%\begin{equation}
-%x + y = z
-%\end{equation}
-%Please try to avoid rasterized images for line-art diagrams and
-%schemas. Whenever possible, use vector graphics instead (see
-%Fig.~\ref{fig1}).
-%
-%\begin{figure}
-%\includegraphics[width=\textwidth]{userPhoto.jpg}
-%\caption{A figure caption is always placed below the illustration.
-%Please note that short captions are centered, while long ones are
-%justified by the macro package automatically.} \label{fig1}
-%\end{figure}
-%
-%\begin{theorem}
-%This is a sample theorem. The run-in heading is set in bold, while
-%the following text appears in italics. Definitions, lemmas,
-%propositions, and corollaries are styled the same way.
-%\end{theorem}
-%%
-%% the environments 'definition', 'lemma', 'proposition', 'corollary',
-%% 'remark', and 'example' are defined in the LLNCS documentclass as well.
-%%
-%\begin{proof}
-%Proofs, examples, and remarks have the initial word in italics,
-%while the following text appears in normal font.
-%\end{proof}
-%For citations of references, we prefer the use of square brackets
-%and consecutive numbers. Citations using labels or the author/year
-%convention are also acceptable. The following bibliography provides
-%a sample reference list with entries for journal
-%articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
-%book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-%and a homepage~\cite{ref_url1}. Multiple citations are grouped
-%\cite{ref_article1,ref_lncs1,ref_book1},
-%\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
-%
-% ---- Bibliography ----
-%
-% BibTeX users should specify bibliography style 'splncs04'.
-% References will then be sorted and formatted in the correct style.
-%
-% \bibliographystyle{splncs04}
-% \bibliography{mybibliography}
-%
 \begin{thebibliography}{8}
-%\bibitem{ref_article1}
-%Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
-%
-%\bibitem{ref_lncs1}
-%Author, F., Author, S.: Title of a proceedings paper. In: Editor,
-%F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
-%Springer, Heidelberg (2016). \doi{10.10007/1234567890}
-%
-%\bibitem{ref_book1}
-%Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
-%Location (1999)
-%
-%\bibitem{ref_proc1}
-%Author, A.-B.: Contribution title. In: 9th International Proceedings
-%on Proceedings, pp. 1--2. Publisher, Location (2010)
+
 
 \bibitem[ICCNLP]{nlp}\url{https://www.iic.uam.es/inteligencia/que-es-procesamiento-del-lenguaje-natural/}.Accedido 24 de abril 2022
 
@@ -418,8 +329,7 @@ Towards Data Science, \url{https://towardsdatascience.com/named-entity-recogniti
 
 \bibitem[SSFNER]{semi_sup_for_ner}
 Wenhui Liao, Sriharsha Veeramachaneni: A Simple Semi-supervised Algorithm For
-Named Entity Recognition. In: 9th International Proceedings
-on Proceedings, pp. 1--2. Publisher, Location (2010)
+Named Entity Recognition. Research and Development, Thomson Reuters
 
 \bibitem[NERTHS]{ner_thesis}
 Ing. Michal Konkol: Named Entity Recognition, pp. 1--2. University of West Bohemia, Faculty of Applied Sciences, Department of Computer Science and Engineering (2015)
