@@ -6,6 +6,7 @@
 %
 \usepackage{graphicx}
 \usepackage[hidelinks,breaklinks=true,backref=page]{hyperref}
+
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 % Used for displaying a sample figure. If possible, figure files should
@@ -40,7 +41,7 @@ Luis Enrique Dalmau Coopat\inst{2}}
 %150--250 words.
 
 %TODO Agregarle algos obre NLP solo
-La extracción de entidades nombradas consiste en la extracción y clasificación de entidades en un texto. Este documento presenta una definición del problema además de introducir los principales retos enfrentados en estos problemas y qué técnicas existen para darle una respuesta lo más acertada posible. 
+En este trabajo abordaremos acerca de una visión general de NLP, explicando en que se basa y los distintos modelos usados en dicha rama. Trataremos una de las ramas más desafiantes del NLP que es la extracción de entidades nombradas(NER).Esta consiste en la extracción y clasificación de entidades en un texto. Este documento presenta una definición del problema además de introducir los principales retos enfrentados en estos problemas y qué técnicas existen para darle una respuesta lo más acertada posible. 
 
 \keywords{Entidades Nombradas  \and Aprendizaje de Máquina \and Procesamiento de Lenguaje Natural.}
 \end{abstract}
@@ -49,7 +50,7 @@ La extracción de entidades nombradas consiste en la extracción y clasificació
 %
 \section{Introducción}
 
-En el contexto actual con el desarrollo de las tecnologías, la explosión de información no estructurada en la web ha hecho que sea necesario un procesamiento para lograr extraer información por medios computacionales. De esto se encarga el Procesamiento de Lenguaje Natural, el cual es una rama de Inteligencia Artificial. Entre la información que se quiere extraer cuáles son las entidades que más significado semántico aportan al texto, una de esta información es saber las entidades que se encuentran en este y cuáles son las categorías a las que pertenece dicha entidad.
+En el contexto actual con el desarrollo de las tecnologías, la explosión de información no estructurada en la web ha hecho que sea necesario un procesamiento para lograr extraer información por medios computacionales. De esto se encarga el Procesamiento de Lenguaje Natural, el cual es una rama de Inteligencia Artificial. Entre la información que obtiene ,se quiere extraer cuáles son las entidades que más significado semántico aportan al texto,saber las entidades que se encuentran en este y cuáles son las categorías a las que pertenecen dichas entidades.
 
 La solución de dicho problema traería consigo una manera de estructurar efectivamente muchos de estos documentos no estructurados pudiendo llegar a un estado de organización de los documentos presentes en la web agilizando diferentes tareas. En la recuperacion de información se pueden usar las entidades nombradas para mejorar el resultado obtenido por los buscadores, en la medicina se pueden encontrar las relaciones existentes entre diferentes entidades creando una base de datos que pueda servir como onotlogía para futuras consultas.
 
@@ -57,7 +58,7 @@ En el documento se presenta primero las dificultades generales del Procesamiento
 
 \section{Procesamiento de Lenguaje Natural}
 
-El Procesamiento del Lenguaje Natural ,como se menciona anteriormente, es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o cualquier 
+El Procesamiento del Lenguaje Natural ,como se menciona anteriormente, es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar a las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o cualquier 
 otro idioma.
 
 Las lenguas humanas pueden expresarse por escrito (texto), oralmente (voz) y también mediante signos. Naturalmente, el NLP está más avanzado en el tratamiento de textos, donde hay muchos más datos y son más fáciles de conseguir en formato electrónico.
