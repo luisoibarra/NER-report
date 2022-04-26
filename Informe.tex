@@ -41,7 +41,7 @@ Luis Enrique Dalmau Coopat\inst{2}}
 %150--250 words.
 
 %TODO Agregarle algos obre NLP solo
-En este trabajo abordaremos acerca de una visión general de NLP, explicando en que se basa y los distintos modelos usados en dicha rama. Trataremos una de las ramas más desafiantes del NLP que es la extracción de entidades nombradas(NER).Esta consiste en la extracción y clasificación de entidades en un texto. Este documento presenta una definición del problema además de introducir los principales retos enfrentados en estos problemas y qué técnicas existen para darle una respuesta lo más acertada posible. 
+En este trabajo abordaremos acerca de una visión general de NLP, explicando en que se basa y los distintos modelos usados en dicha rama. Trataremos uno de los aspectos más desafiantes del NLP que es la extracción de entidades nombradas(NER).Esta consiste en la extracción y clasificación de entidades en un texto. Este documento presenta una definición del problema además de introducir los principales retos enfrentados en estos problemas y qué técnicas existen para darle una respuesta lo más acertada posible. 
 
 \keywords{Entidades Nombradas  \and Aprendizaje de Máquina \and Procesamiento de Lenguaje Natural.}
 \end{abstract}
@@ -50,14 +50,15 @@ En este trabajo abordaremos acerca de una visión general de NLP, explicando en 
 %
 \section{Introducción}
 
-En el contexto actual con el desarrollo de las tecnologías, la explosión de información no estructurada en la web ha hecho que sea necesario un procesamiento para lograr extraer información por medios computacionales. De esto se encarga el Procesamiento de Lenguaje Natural, el cual es una rama de Inteligencia Artificial. Entre la información que obtiene ,se quiere extraer cuáles son las entidades que más significado semántico aportan al texto,saber las entidades que se encuentran en este y cuáles son las categorías a las que pertenecen dichas entidades.
+En el contexto actual con el desarrollo de las tecnologías, la explosión de información no estructurada en la web ha hecho que sea necesario un procesamiento para lograr extraer información por medios computacionales. De esto se encarga el Procesamiento de Lenguaje Natural, el cual es una rama de Inteligencia Artificial. Entre la información que se obtiene ,se quiere extraer cuáles son las entidades que más significado semántico aportan al texto,saber las entidades que se encuentran en este y cuáles son las categorías a las que pertenecen dichas entidades.
 
-La solución de dicho problema traería consigo una manera de estructurar efectivamente muchos de estos documentos no estructurados pudiendo llegar a un estado de organización de los documentos presentes en la web agilizando diferentes tareas. En la recuperacion de información se pueden usar las entidades nombradas para mejorar el resultado obtenido por los buscadores, en la medicina se pueden encontrar las relaciones existentes entre diferentes entidades creando una base de datos que pueda servir como onotlogía para futuras consultas.
+La solución de dicho problema traería consigo una manera de estructurar efectivamente muchos de estos documentos no estructurados pudiendo llegar a un estado de organización de los documentos presentes en la web agilizando diferentes tareas. En la recuperación de información se pueden usar las entidades nombradas para mejorar el resultado obtenido por los buscadores, en la medicina se pueden encontrar las relaciones existentes entre diferentes entidades creando una base de datos que pueda servir como ontología para futuras consultas.
 
 En el documento se presenta primero las dificultades generales del Procesamiento de Lenguaje Natural. Luego se introduce el tema sobre la Extracción de Entidades Nombradas y los algoritmos usados para resolverlos además de los problemas comunes que se enfrentan a la hora de la extracción de entidades.
 
 \section{Procesamiento de Lenguaje Natural}
 
+\subsection{¿Qué es el Procesamiento del Lenguaje Natural?\protect\footnote{Todo pertenece a \cite{nlp}}}
 El Procesamiento del Lenguaje Natural ,como se menciona anteriormente, es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar a las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o cualquier 
 otro idioma.
 
@@ -65,44 +66,45 @@ Las lenguas humanas pueden expresarse por escrito (texto), oralmente (voz) y tam
 
 Los audios, aunque estén en formato digital, hay que procesarlos para transcribirlos en letras o caracteres y, a partir de ahí, entender la pregunta. El proceso de respuesta es el inverso: primero se elabora la oración y luego se “sintetiza la voz”.
 
-Por cierto, la voz artificial cada vez suena más humana, con inflexiones tonales y prosódicas que imitan la producción humana\footnote{Todo el parrafo pertenece a \cite{nlp}}.
+Por cierto, la voz artificial cada vez suena más humana, con inflexiones tonales y prosódicas que imitan la producción humana.
 
 
 
-\subsection{Modelos para procesamiento del lenguaje natural}
+\subsection{Modelos para procesamiento del lenguaje natural\protect\footnote{Todo pertenece a \cite{nlp}}}
 
 Tratar computacionalmente una lengua implica un proceso de modelación matemática. Los lingüistas computacionales se encargan de la tarea de “preparar” el modelo lingüístico para que posteriormente se implemente la modelación lingüística:
 \begin{itemize}
 
 
-\item{Modelos Lógicos: gramáticas
+\item{\textbf{Modelos Lógicos: gramáticas}
 
 Los lingüistas escriben reglas de reconocimiento de patrones estructurales, empleando un formalismo gramatical concreto. Estas reglas, en combinación con la información almacenada en diccionarios computacionales, definen los patrones que hay que reconocer para resolver la tarea (buscar información, traducir, etc.).
 
 Estos modelos lógicos pretenden reflejar la estructura lógica del lenguaje y surgen a partir de las teorías de N. Chomsky en los años 50.} 
 
 
-\item{Modelos probabilísticos del lenguaje natural: basados en datos
+\item{\textbf{Modelos probabilísticos del lenguaje natural: basados en datos}
 
 La aproximación es a la inversa: los lingüistas recogen colecciones de ejemplos y datos (corpus) y a partir de ellos se calculan las frecuencias de diferentes unidades lingüísticas (letras, palabras, oraciones) y su probabilidad de aparecer en un contexto determinado. Calculando esta probabilidad, se puede predecir cuál será la siguiente unidad en un contexto dado, sin necesidad de recurrir a reglas gramaticales explícitas.
 
 Es el paradigma de “aprendizaje automático” que se ha impuesto en las últimas décadas en Inteligencia Artificial: los algoritmos infieren las posibles respuestas a partir de los datos observados anteriormente en el corpus.}
 \end{itemize}
 
-\subsection{Componentes del procesamiento del lenguaje natural}
+\subsection{Componentes del procesamiento del lenguaje natural\protect\footnote{Todo pertenece a \cite{nlp}}}
 
 A continuación, vemos algunos de los componentes del procesamiento del lenguaje natural. No todos los análisis que se describen se aplican en cualquier tarea de NLP, sino que depende del objetivo de la aplicación.
 
 \begin{itemize}
-    \item Análisis morfológico o léxico. Consiste en el análisis interno de las palabras que forman oraciones para extraer lemas, rasgos flexivos, unidades léxica compuestas. Es esencial para la información básica: categoría sintáctica y significado léxico.
-    \item Análisis sintáctico. Consiste en el análisis de la estructura de las oraciones de acuerdo con el modelo gramatical empleado (lógico o estadístico).
-    \item Análisis semántico. Proporciona la interpretación de las oraciones, una vez eliminadas las ambigüedades morfosintácticas.
-    \item Análisis pragmático. Incorpora el análisis del contexto de uso a la interpretación final. Aquí se incluye el tratamiento del lenguaje figurado (metáfora e ironía) como el conocimiento del mundo específico necesario para entender un texto especializado.
+    \item \textbf{Análisis morfológico o léxico}. Consiste en el análisis interno de las palabras que forman oraciones para extraer lemas, rasgos flexivos, unidades léxica compuestas. Es esencial para la información básica: categoría sintáctica y significado léxico.
+    \item \textbf{Análisis sintáctico}. Consiste en el análisis de la estructura de las oraciones de acuerdo con el modelo gramatical empleado (lógico o estadístico).
+    \item \textbf{Análisis semántico}. Proporciona la interpretación de las oraciones, una vez eliminadas las ambigüedades morfosintácticas.
+    \item \textbf{Análisis pragmático}. Incorpora el análisis del contexto de uso a la interpretación final. Aquí se incluye el tratamiento del lenguaje figurado (metáfora e ironía) como el conocimiento del mundo específico necesario para entender un texto especializado.
 \end{itemize}
 
 
  %HINT Características del procesamiento del Lenguaje Natural según su estructura y especificidades de cada idioma
- %HINT Dificultades en el procesamiento
+ 
+\subsection{Dificultades en el procesamiento}
  
 En cuanto al NLP podemos darnos cuenta rapidamente de varios problemas que surgen dada la inmensa cantidad de diferencias entre los distintos idiomas existentes en nuestro planeta. No es igual el uso de pronombres en todas las lenguas , incluso en algunas estos se encuentran incluidos en la palabra a la que refieren como se dan los casos en el idioma alemán. Muchos otros idiomas tienen distintas estructuras y orden a pesar de que hayan muchas características comunes como el sujeto y el predicado.
 
@@ -111,7 +113,7 @@ Incluso podemos tener en cuenta que hay palabras existentes en algunos idiomas q
 
 \section{Entidad nombrada}
 
-La definición de entidad nombrada se puede ver formalmente en los designadores rígidos\cite{rigid_designator}, los cuales son términos que designan un mismo elemento en todos los mundos posibles en que ese elemento existe. Generalmente inluyen nombres propios y términos científicos tales como nombre de sustancias, elementos químicos. Esta definición es solo un punto de partida para el análisis de las entidades ya que se puede relajar  para abarcar más elementos como entidades, por ejemplo, las expresiones temporales y numéricas, como cantidades de dinero y unidades de medida, se toman como entidades nombradas. 
+La definición de entidad nombrada se puede ver formalmente en los designadores rígidos\cite{rigid_designator}, los cuales son términos que designan un mismo elemento en todos los mundos posibles en que ese elemento existe. Generalmente incluyen nombres propios y términos científicos tales como nombre de sustancias, elementos químicos. Esta definición es solo un punto de partida para el análisis de las entidades ya que se puede relajar  para abarcar más elementos como por ejemplo, las expresiones temporales y numéricas, como cantidades de dinero y unidades de medida, se toman como entidades nombradas. 
 
 \subsection{Ejemplos}
 
@@ -129,7 +131,7 @@ En los ejemplos anteriores se evidencian algunos de los problemas que tiene la e
 
 \section{Categorías}
 
-Las categorías son grupos a los que las entidades nombradas pertenecen. La variedad de estos grupos y su interrelacción entre ellos está dada principalmente por el contexto del problema a tratar. Las principales categorías son: \textbf{persona}, \textbf{organización} y \textbf{lugar}, estas se pueden encuentran en todo texto independientemente del tema que traten aunque existen varias definiciones de categorías llegando algunas incluso a formar jerarquías. Las categorías también pueden crearse en dependencia del contexto en que se vaya a procesar el texto, especializándolas más para lograr extraer información más exactas, esto ocurre principalmente en el campo de la química y la biología en la cual los nombres de las sustancias se califican en categorías afines. Un ejemplo de una definición general jerárquica se encuentra en la versión de \emph{Sekine}\cite{sekine} que cuenta con unos 200 subtipos.
+Las categorías son grupos a los que las entidades nombradas pertenecen. La variedad de estos grupos y su interrelacción entre ellos está dada principalmente por el contexto del problema a tratar. Las principales categorías son: \textbf{persona}, \textbf{organización} y \textbf{lugar}, estas se pueden encontrar en todo texto independientemente del tema que traten aunque existen varias definiciones de categorías llegando algunas incluso a formar jerarquías. Las categorías también pueden crearse en dependencia del contexto en que se vaya a procesar el texto, especializándolas más para lograr extraer información más exactas, esto ocurre principalmente en el campo de la química y la biología en la cual los nombres de las sustancias se califican en categorías afines. Un ejemplo de una definición general jerárquica se encuentra en la versión de \cite{sekine} que cuenta con unos 200 subtipos.
 
 \subsection{Ejemplos}
 
@@ -143,7 +145,7 @@ Las categorías son grupos a los que las entidades nombradas pertenecen. La vari
 
 \subsection{Problemas}
 
-La asingación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. Por ejemplo, se tienen las oraciones: \emph{said Harry You, CEO of HearingPoint} y \emph{For this year’s second quarter, You said the
+La asignación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. Por ejemplo, se tienen las oraciones: \emph{said Harry You, CEO of HearingPoint} y \emph{For this year’s second quarter, You said the
 company’s} \cite{semi_sup_for_ner}, en estos campos ambos \emph{You} corresponden al nombre de una misma persona, pero el segundo se puede clasificar como un pronombre personal también, que en cuyo caso no sería una entidad nombrada.
 
 \section{Extracción de Entidades Nombradas}
@@ -152,7 +154,7 @@ Dada las definiciones anteriores el problema de Reconocimiento de Entidades Nomb
 
 \subsection{Extracción de entidades}
 
-La extracción de entidades consiste en extraer del texto las entidades existentes en él ya anotadas con diferentes metadatos como la parte de oración que represena, la posición dentro de una entidad entre otras. En este proceso intervienen dos etapas que se interrelacionan entre sí: \emph{chuncking}\cite{chunking} y \emph{Part-of-Speech (POS) Tagging}\cite{postag}.
+La extracción de entidades consiste en extraer del texto las entidades existentes en él ya anotadas con diferentes metadatos como la parte de oración que representa, la posición dentro de una entidad, entre otras. En este proceso intervienen dos etapas que se interrelacionan entre sí: \emph{chunking}\cite{chunking} y \emph{Part-of-Speech (POS) Tagging}\cite{postag}.
 
 \subsubsection{POS Tagging}
 
@@ -188,7 +190,7 @@ Para resolver este problema se han ideado diferentes aproximaciones:
 
 %Sobre este árbol se realizan diferentes algoritmos para la extracción de entidades nombradas:
 
-Esta etapa se puede ver como un problema de segmentación en la cual se quiere particionar los tokens anotados previemente con las etiquetas POS en conjuntos que identifiquen las entidades nombradas.
+Esta etapa se puede ver como un problema de segmentación en la cual se quiere particionar los tokens anotados previamente con las etiquetas POS en conjuntos que identifiquen las entidades nombradas.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{namedentity.jpg}
@@ -203,7 +205,7 @@ Para lograr esta anotación se utilizan varias aproximaciones:
 oración y luego son parseadas en dependencia de estas. Algunos parsers proveen la capacidad de 
 tener expresiones regulares en su interior aumentando la expresividad \cite{nltkgrammar}
 
-\item Aprendizaje de Máquina: Generalmente se realiza un aprendizaje supervisado mediante un conjunto de datos, las entradas del conjunto de datos varían pero las más simples es una tupla \emph{(palabra, IOB tag)}.  IOB es una anotación va acompañada en cada token y representa si una parte esta dentro (In), fuera (Outside) o inicio (Begining) de un pedazo o entidad.
+\item Aprendizaje de Máquina: Generalmente se realiza un aprendizaje supervisado mediante un conjunto de datos, las entradas del conjunto de datos varían pero las más simples es una tupla \emph{(palabra, IOB tag)}.  IOB es una anotación que va acompañada en cada token y representa si una parte esta dentro (In), fuera (Outside) o inicio (Beginning) de un pedazo o entidad.
 
 \end{itemize}
 
@@ -239,22 +241,24 @@ Todas estas herramientas, además de reconocimiento de entidades, permiten reali
 
 \section{Problemas}
 
-La extracción de entidades nombradas incurren en diferentes problemas uno de ellos está relacionado principalmente con el corpus usado para el entrenamiento del sistema. En general los corpus existentes se han entrenado en un ambiente relativamente cerrado y uniforme, por ejemplo, Wikipedia, periódicos, artículos científicos. Esto tiene como consecuencia que si se usa este sistema en un ambiente no relacionado o estructurado de manera similar el rendimiento baje. Un ejemplo clásico en el cual esto ocurre es en Twitter, debido a la gran cantidad de temas en los que se habla, la cantidad limitada de 140 caracteres, la ausencia de reglas para escribir,  entre otros elementos hace que los NER se desempeñen de manera pobre. Este problema es abordado en \cite{tweeter}, en este artículo sus escritores lograron reducir los errores en el POS hasta un 41\% con respecto al Standford POS Tagger y logrando una métrica F1 final de 0.59 en comparación con 0.29 del Standford NER.
+La extracción de entidades nombradas incurre en diferentes problemas uno de ellos está relacionado principalmente con el corpus usado para el entrenamiento del sistema. En general los corpus existentes se han entrenado en un ambiente relativamente cerrado y uniforme, por ejemplo, Wikipedia, periódicos, artículos científicos. Esto tiene como consecuencia que si se usa este sistema en un ambiente no relacionado o estructurado de manera similar el rendimiento baje. Un ejemplo clásico en el cual esto ocurre es en Twitter, debido a la gran cantidad de temas en los que se habla, la cantidad limitada de 140 caracteres, la ausencia de reglas para escribir,  entre otros elementos hace que los NER se desempeñen de manera pobre. Este problema es abordado en \cite{tweeter}, en este artículo sus escritores lograron reducir los errores en el POS hasta un 41\% con respecto al Standford POS Tagger y logrando una métrica F1 final de 0.59 en comparación con 0.29 del Standford NER.
 
 Otro problema relacionado con el corpus es el inherente error humano y la propia ambigüedad del lenguaje, esto hace que en oraciones con la misma sintaxis y semántica las anotaciones difieran por errores humanos, pudiendo llevar en el peor de los casos a variar el rendimiento del sistema en un 5\% \cite{posdecisiontree}. Aunque en general los anotadores humanos son hasta ahora la manera más fiable de obtener información anotada correctamente, esto requiere del trabajo manual de estos lo cual se hace en muchos casos impracticable debido al gran volumen de datos que se procesa hoy en día.
 
 \section{Usos}
 
-La extracción de entidades nombradas puede ser utilizada para darle solución a diferentes problemas. Uno de ellos es que este procedimiento es el primer paso para la creación de un sistema de extracción de relaciones en los documentos, en los cuales una vez se tengan las entidades con sus clasificaciones es necesario buscar las diferentes relaciones que existen entre ellos para finalmente crear una base de datos estructurada con esta información. Un ejemplo de lo anterior se evidencia en el texto \emph{Facebook compró WhatsApp}, en el cual se evidencian dos orgnizaciones \emph{Facebook} y \emph{WhatsApp} y la relación \emph{comprar}.
+La extracción de entidades nombradas puede ser utilizada para darle solución a diferentes problemas. Uno de ellos es que este procedimiento es el primer paso para la creación de un sistema de extracción de relaciones en los documentos, en los cuales una vez se tengan las entidades con sus clasificaciones es necesario buscar las diferentes relaciones que existen entre ellos para finalmente crear una base de datos estructurada con esta información. Un ejemplo de lo anterior se evidencia en el texto \emph{Facebook compró WhatsApp}, en el cual se evidencian dos organizaciones \emph{Facebook} y \emph{WhatsApp} y la relación \emph{comprar}.
 
-En la recuparación de información la extracción se puede usar para mejorar la búsqueda. Por ejemplo teniendo un corpus anotado con las entidades que aparecen en él la recuperación se puede realizar sobre estas, reduciendo la cantidad de términos necesarios para realizar la búsqueda enfocándose solo ellas, que son las que aportan el mayor significado semántico al texto. Además estas anotaciones se pueden usar en la clasificación del texto acorde su temática y con esto último es posible realizar búsquedas más precisas.
+En la recuparación de información la extracción se puede usar para mejorar la búsqueda. Por ejemplo teniendo un corpus anotado con las entidades que aparecen en él, la recuperación se puede realizar sobre estas, reduciendo la cantidad de términos necesarios para realizar la búsqueda enfocándose solo en ellas, que son las que aportan el mayor significado semántico al texto. Además estas anotaciones se pueden usar en la clasificación del texto acorde a su temática y con esto último es posible realizar búsquedas más precisas.
 
-En la construcción de un sistema de atención al cliente la extracción de entidades puede ayudar a dirigir la queja del cliente al departamento que se le asocie automáticamente. Esto es posible ya que en ests mensajes generalmente están los distintos productos y lugares en dónde se detectó el problema, pudiendo extraer esta información y posteriormente enviándole el mensaje al departamento asignado. Por ejemplo: \emph{Etecsa, la conexión en La Habana está terrible en el horario de 8 a 11 de la noche}, en el mensaje anterior la queja se enviará al departamento de Etecsa en La Habana.
+En la construcción de un sistema de atención al cliente la extracción de entidades puede ayudar a dirigir la queja del cliente al departamento que se le asocie automáticamente. Esto es posible ya que en estos mensajes generalmente están los distintos productos y lugares en dónde se detectó el problema, pudiendo extraer esta información y posteriormente enviándole el mensaje al departamento asignado. Por ejemplo: \emph{Etecsa, la conexión en La Habana está terrible en el horario de 8 a 11 de la noche}, en el mensaje anterior la queja se enviará al departamento de Etecsa en La Habana.
 
 
 \section{Conclusiones}
 
 %TODO Poner conclusiones
+
+Podemos afirmar entonces que el Reconocimiento de Entidades Nombradas es una herramienta de mucha utilidad y que nos facilita resolver muchos de nuestros problemas actuales. Llegar a un punto de dar una consulta a la maquina en lenguaje natural y que esta devuelva lo que queremos es algo que no tiene precio. Pero aún es muy pronto para este campo del NLP que a pesar de tener 50 años de investigación, el lenguaje natural en su expresión más innata como vimos en el caso de las redes sociales sigue siendo un gran desafío para la ciencia al que cada vez estamos más cerca de resolver.
 
 %\subsubsection{Sample Heading (Third Level)} Only two levels of
 %headings should be numbered. Lower level headings remain unnumbered;
