@@ -143,9 +143,10 @@ Las categorías son grupos a los que las entidades nombradas pertenecen. La vari
 
 \subsection{Problemas}
 
-La asignación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. %TODO Poner ejemplo de esto
+La asingación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. Por ejemplo, se tienen las oraciones: \emph{said Harry You, CEO of HearingPoint} y \emph{For this year’s second quarter, You said the
+company’s} \cite{semi_sup_for_ner}, en estos campos ambos \emph{You} corresponden al nombre de una misma persona, pero el segundo se puede clasificar como un pronombre personal también, que en cuyo caso no sería una entidad nombrada.
 
-\section{Definición del problema de Extracción de Entidades Nombradas}
+\section{Extracción de Entidades Nombradas}
 
 Dada las definiciones anteriores el problema de Reconocimiento de Entidades Nombradas se puede definir como la extracción y clasificación de las entidades nombradas de un texto. Como dice en la definición, el problema se divide en dos partes fundamentales: extracción y clasificación.
 
@@ -221,6 +222,20 @@ Esta parte del problema es la encargada de clasificar todas las entidades extra�
 
 \end{itemize}
 
+\subsection{Software}
+
+Para la extracción de entidades nombradas existen varios softwares, entre los más importantes se presentan:
+
+\begin{itemize}
+
+\item spaCy \cite{spacy_nlp}
+\item Standford NLP \cite{standford_nlp}
+\item GATE \cite{gate_nlp}
+\item Apache OpenNLP \cite{open_nlp}
+
+\end{itemize}
+
+Todas estas herramientas, además de reconocimiento de entidades, permiten realizar diferentes operaciones orientadas al procesamiento de lenguaje natural.
 
 \section{Problemas}
 
@@ -230,7 +245,12 @@ Otro problema relacionado con el corpus es el inherente error humano y la propia
 
 \section{Usos}
 
-%TODO Poner usos
+La extracción de entidades nombradas puede ser utilizada para darle solución a diferentes problemas. Uno de ellos es que este procedimiento es el primer paso para la creación de un sistema de extracción de relaciones en los documentos, en los cuales una vez se tengan las entidades con sus clasificaciones es necesario buscar las diferentes relaciones que existen entre ellos para finalmente crear una base de datos estructurada con esta información. Un ejemplo de lo anterior se evidencia en el texto \emph{Facebook compró WhatsApp}, en el cual se evidencian dos orgnizaciones \emph{Facebook} y \emph{WhatsApp} y la relación \emph{comprar}.
+
+En la recuparación de información la extracción se puede usar para mejorar la búsqueda. Por ejemplo teniendo un corpus anotado con las entidades que aparecen en él la recuperación se puede realizar sobre estas, reduciendo la cantidad de términos necesarios para realizar la búsqueda enfocándose solo ellas, que son las que aportan el mayor significado semántico al texto. Además estas anotaciones se pueden usar en la clasificación del texto acorde su temática y con esto último es posible realizar búsquedas más precisas.
+
+En la construcción de un sistema de atención al cliente la extracción de entidades puede ayudar a dirigir la queja del cliente al departamento que se le asocie automáticamente. Esto es posible ya que en ests mensajes generalmente están los distintos productos y lugares en dónde se detectó el problema, pudiendo extraer esta información y posteriormente enviándole el mensaje al departamento asignado. Por ejemplo: \emph{Etecsa, la conexión en La Habana está terrible en el horario de 8 a 11 de la noche}, en el mensaje anterior la queja se enviará al departamento de Etecsa en La Habana.
+
 
 \section{Conclusiones}
 
@@ -360,6 +380,25 @@ An Experimental Study. University of Washington Seattle, WA 98125, USA
 \bibitem[POSDT]{posdecisiontree}
 Lluís Màrquez i Villodre: Part-of-speech Tagging: A Machine Learning Approach based on Decision Trees. Departament de Llenguatges i Sistemes Informàtics de la Universitat Politècnica de Catalunya, Barcelona (1999)
 
+\bibitem[STDFNLP]{standford_nlp}
+Standford NLP, \url{https://stanfordnlp.github.io/CoreNLP/index.html}. Accedido 23 de abril de 2022
+
+\bibitem[SPCYNLP]{spacy_nlp}
+Standford NLP, \url{https://spacy.io/}. Accedido 23 de abril de 2022
+
+\bibitem[GATENLP]{gate_nlp}
+Standford NLP, \url{https://gate.ac.uk/}. Accedido 23 de abril de 2022
+
+\bibitem[OPENNLP]{open_nlp}
+Apache OpenNLP, \url{https://opennlp.apache.org/}. Accedido 23 de abril de 2022
+
+\bibitem[NERUSE1]{ner_uses_1}
+Towards Data Science, \url{https://towardsdatascience.com/named-entity-recognition-applications-and-use-cases-acdbf57d595e}. Accedido 23 de abril de 2022
+
+\bibitem[SSFNER]{semi_sup_for_ner}
+Wenhui Liao, Sriharsha Veeramachaneni: A Simple Semi-supervised Algorithm For
+Named Entity Recognition. In: 9th International Proceedings
+on Proceedings, pp. 1--2. Publisher, Location (2010)
 
 \end{thebibliography}
 \end{document}
