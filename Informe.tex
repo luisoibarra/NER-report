@@ -5,6 +5,7 @@
 \documentclass[runningheads]{llncs}
 %
 \usepackage{graphicx}
+\usepackage[hidelinks,breaklinks=true,backref=page]{hyperref}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 % Used for displaying a sample figure. If possible, figure files should
@@ -15,6 +16,7 @@
 % \renewcommand\UrlFont{\color{blue}\rmfamily}
 
 \begin{document}
+
 %
 \title{Reconocimiento de Entidades Nombradas}
 %
@@ -23,7 +25,7 @@
 % an abbreviated paper title here
 %
 \author{Luis Ernesto Ibarra Vázquez\inst{1} \and
-Luis Enrique Dalmau Coopat\inst{1}}
+Luis Enrique Dalmau Coopat\inst{2}}
 %
 %\authorrunning{F. Author et al.}
 % First names are abbreviated in the running head.
@@ -55,18 +57,20 @@ En el documento se presenta primero las dificultades generales del Procesamiento
 
 \section{Procesamiento de Lenguaje Natural}
 
-El Procesamiento del Lenguaje Natural ,como se menciona anteriormente, es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o cualquier otro idioma.
+El Procesamiento del Lenguaje Natural ,como se menciona anteriormente, es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o cualquier 
+otro idioma.
 
 Las lenguas humanas pueden expresarse por escrito (texto), oralmente (voz) y también mediante signos. Naturalmente, el NLP está más avanzado en el tratamiento de textos, donde hay muchos más datos y son más fáciles de conseguir en formato electrónico.
 
 Los audios, aunque estén en formato digital, hay que procesarlos para transcribirlos en letras o caracteres y, a partir de ahí, entender la pregunta. El proceso de respuesta es el inverso: primero se elabora la oración y luego se “sintetiza la voz”.
 
-Por cierto, la voz artificial cada vez suena más humana, con inflexiones tonales y prosódicas que imitan la producción humana.
+Por cierto, la voz artificial cada vez suena más humana, con inflexiones tonales y prosódicas que imitan la producción humana\footnote{Todo el parrafo pertenece a \cite{nlp}}.
+
 
 
 \subsection{Modelos para procesamiento del lenguaje natural}
 
-Tratar computacionalmente una lengua implica un proceso de modelización matemática. Los lingüistas computacionales se encargan de la tarea de “preparar” el modelo lingüístico para que posteriormente se implemente e la modelización lingüística:
+Tratar computacionalmente una lengua implica un proceso de modelación matemática. Los lingüistas computacionales se encargan de la tarea de “preparar” el modelo lingüístico para que posteriormente se implemente la modelación lingüística:
 \begin{itemize}
 
 
@@ -101,12 +105,12 @@ A continuación, vemos algunos de los componentes del procesamiento del lenguaje
  
 En cuanto al NLP podemos darnos cuenta rapidamente de varios problemas que surgen dada la inmensa cantidad de diferencias entre los distintos idiomas existentes en nuestro planeta. No es igual el uso de pronombres en todas las lenguas , incluso en algunas estos se encuentran incluidos en la palabra a la que refieren como se dan los casos en el idioma alemán. Muchos otros idiomas tienen distintas estructuras y orden a pesar de que hayan muchas características comunes como el sujeto y el predicado.
 
-Incluso podemos tener en cuenta que hay palabras existentes en algunos idiomas que en otros no, al igual que contracciones y palabras nativas de la jerga local. Además, no siempre los organismos ofciciales de cada lengua se encuentran al día con la evolución de su respectivo idioma.
+Incluso podemos tener en cuenta que hay palabras existentes en algunos idiomas que en otros no, al igual que contracciones y palabras nativas de la jerga local. Además, no siempre los organismos ofciciales encargados de cada lengua se encuentran al día con la evolución de su respectivo idioma.
 
 
 \section{Entidad nombrada}
 
-La definición de entidad nombrada se puede ver formalmente en los designadores rígidos\cite{rigid_designator}, los cuales son términos que designan la misma cosa en todos los mundos posibles en que esa cosa existe. Generalmente inluyen nombres propios y términos científicos tales como nombre de sustancias, elementos químicos. Esta definición es solo un punto de partida para el análisis de las entidades ya que se puede relajar  para abarcar más elementos como entidades, por ejemplo, las expresiones temporales y numéricas, como cantidades de dinero y unidades de medida, se toman como entidades nombradas. 
+La definición de entidad nombrada se puede ver formalmente en los designadores rígidos\cite{rigid_designator}, los cuales son términos que designan un mismo elemento en todos los mundos posibles en que ese elemento existe. Generalmente inluyen nombres propios y términos científicos tales como nombre de sustancias, elementos químicos. Esta definición es solo un punto de partida para el análisis de las entidades ya que se puede relajar  para abarcar más elementos como entidades, por ejemplo, las expresiones temporales y numéricas, como cantidades de dinero y unidades de medida, se toman como entidades nombradas. 
 
 \subsection{Ejemplos}
 
@@ -138,7 +142,7 @@ Las categorías son grupos a los que las entidades nombradas pertenecen. La vari
 
 \subsection{Problemas}
 
-La asingación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. %TODO Poner ejemplo de esto
+La asignación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. %TODO Poner ejemplo de esto
 
 \section{Definición del problema de Extracción de Entidades Nombradas}
 
@@ -320,46 +324,39 @@ Otro problema relacionado con el corpus es el inherente error humano y la propia
 %Author, A.-B.: Contribution title. In: 9th International Proceedings
 %on Proceedings, pp. 1--2. Publisher, Location (2010)
 
-\bibitem{nlp}\url{https://www.iic.uam.es/inteligencia/que-es-procesamiento-del-lenguaje-natural/}.Accedido 24 de abril 2022
+\bibitem[ICCNLP]{nlp}\url{https://www.iic.uam.es/inteligencia/que-es-procesamiento-del-lenguaje-natural/}.Accedido 24 de abril 2022
 
-\bibitem{sekine}
-New York University, Natural Language Processing Section, \url{https://nlp.cs.nyu.edu/ene/version7\_1\_0Beng.html}. Accedido 13
-de abril 2022
+\bibitem[SEKINE]{sekine}New York University, Natural Language Processing Section, \url{https://nlp.cs.nyu.edu/ene/version7\_1\_0Beng.html}. Accedido 13 de abril 2022
 
-\bibitem{rigid_designator}
-Wikipedia, \url{https://en.wikipedia.org/wiki/Rigid\_designator}. Accedido 13
-de abril 2022
+\bibitem[RIGID]{rigid_designator}
+Wikipedia, \url{https://en.wikipedia.org/wiki/Rigid\_designator}. Accedido 13 de abril 2022
 
-\bibitem{chunking}
-Wikipedia, \url{https://en.wikipedia.org/wiki/Shallow\_parsing}. Accedido 12 de abril
-2022
+\bibitem[SHALLOW]{chunking}
+Wikipedia, \url{https://en.wikipedia.org/wiki/Shallow\_parsing}. Accedido 12 de abril 2022
 
-\bibitem{postag}
-Wikipedia, \url{https://en.wikipedia.org/wiki/Part-of-speech\_tagging}. Accedido 13 de abril
-2022
+\bibitem[POSTAG]{postag}
+Wikipedia, \url{https://en.wikipedia.org/wiki/Part-of-speech\_tagging}. Accedido 13 de abril 2022
 
-\bibitem{pennpostag}
+\bibitem[PENNPOSTAG]{pennpostag}
 University of Pensilvania Departament of Linguistics, \url{https://www.ling.upenn.edu/courses/Fall\_2003/ling001/penn\_treebank\_pos.html}. Accedido 13 de abril 2022
 
-\bibitem{hmm}
-Towards Data Science, \url{https://towardsdatascience.com/part-of-speech-tagging-for-beginners-3a0754b2ebba}. Accedido 13 de abril
-2022
+\bibitem[TOWARDS]{hmm}
+Towards Data Science, \url{https://towardsdatascience.com/part-of-speech-tagging-for-beginners-3a0754b2ebba}. Accedido 13 de abril 2022
 
-\bibitem{brownpostag}
+\bibitem[BROWN]{brownpostag}
 Wikipedia, \url{https://en.wikipedia.org/wiki/Brown\_Corpus\#Part-of-speech\_tags\_used}. Accedido 13 de abril 2022
 
-\bibitem{ref_url1}
-LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
-Oct 2017
+\bibitem[LNCS]{ref_url1}
+LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4 Oct 2017
 
-\bibitem{nltkgrammar}
+\bibitem[NLTK]{nltkgrammar}
 Steven Bird, Ewan Klein, and Edward Loper: Natural Language Processing with Python. Online Edition. \url{https://www.nltk.org/book/ch07.html}
 
-\bibitem{tweeter}
+\bibitem[TWITTER]{tweeter}
 Alan Ritter, Sam Clark, Mausam and Oren Etzioni: Named Entity Recognition in Tweets:
 An Experimental Study. University of Washington Seattle, WA 98125, USA
 
-\bibitem{posdecisiontree}
+\bibitem[POSDT]{posdecisiontree}
 Lluís Màrquez i Villodre: Part-of-speech Tagging: A Machine Learning Approach based on Decision Trees. Departament de Llenguatges i Sistemes Informàtics de la Universitat Politècnica de Catalunya, Barcelona (1999)
 
 
