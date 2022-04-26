@@ -50,16 +50,17 @@ En este trabajo abordaremos acerca de una visión general de NLP, explicando en 
 %
 \section{Introducción}
 
-En el contexto actual con el desarrollo de las tecnologías, la explosión de información no estructurada en la web ha hecho que sea necesario un procesamiento para lograr extraer información por medios computacionales. De esto se encarga el Procesamiento de Lenguaje Natural, el cual es una rama de Inteligencia Artificial. Entre la información que se obtiene ,se quiere extraer cuáles son las entidades que más significado semántico aportan al texto,saber las entidades que se encuentran en este y cuáles son las categorías a las que pertenecen dichas entidades.
+En el contexto actual con el desarrollo de las tecnologías, la explosión de información no estructurada en la web ha hecho que sea necesario un procesamiento para lograr extraer información por medios computacionales. De esto se encarga el Procesamiento de Lenguaje Natural, el cual es una rama de Inteligencia Artificial encargada de la creación de modelos y algoritmos para atacar este tipo de problemas. Una información en particular que se desea extraer en el procesamiento de textos son las entidades que más significado semántico aportan al texto, saber las entidades que se encuentran en este y cuáles son las categorías a las que pertenecen dichas entidades, en la literatura este problema se conoce como Extracción de Entidades Nombradas.
 
 La solución de dicho problema traería consigo una manera de estructurar efectivamente muchos de estos documentos no estructurados pudiendo llegar a un estado de organización de los documentos presentes en la web agilizando diferentes tareas. En la recuperación de información se pueden usar las entidades nombradas para mejorar el resultado obtenido por los buscadores, en la medicina se pueden encontrar las relaciones existentes entre diferentes entidades creando una base de datos que pueda servir como ontología para futuras consultas.
 
-En el documento se presenta primero las dificultades generales del Procesamiento de Lenguaje Natural. Luego se introduce el tema sobre la Extracción de Entidades Nombradas y los algoritmos usados para resolverlos además de los problemas comunes que se enfrentan a la hora de la extracción de entidades.
+En el documento se presenta primero las dificultades generales del Procesamiento de Lenguaje Natural. Luego se introduce el tema sobre la Extracción de Entidades Nombradas y los algoritmos usados para resolverlos además de los problemas comunes que se enfrentan a la hora de la extracción de entidades. Por último se presentan los distintos usos de la extracción de entidades en el proceamiento de documentos para la solución de distintos problemas.
 
 \section{Procesamiento de Lenguaje Natural}
 
 \subsection{¿Qué es el Procesamiento del Lenguaje Natural?\protect\footnote{Todo pertenece a \cite{nlp}}}
 El Procesamiento del Lenguaje Natural ,como se menciona anteriormente, es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar a las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o cualquier 
+El Procesamiento del Lenguaje Natural, como se menciona anteriormente, es el campo de conocimiento de la Inteligencia Artificial que se ocupa de investigar la manera de comunicar a las máquinas con las personas mediante el uso de lenguas naturales, como el español, el inglés o cualquier 
 otro idioma.
 
 Las lenguas humanas pueden expresarse por escrito (texto), oralmente (voz) y también mediante signos. Naturalmente, el NLP está más avanzado en el tratamiento de textos, donde hay muchos más datos y son más fáciles de conseguir en formato electrónico.
@@ -106,7 +107,7 @@ A continuación, vemos algunos de los componentes del procesamiento del lenguaje
  
 \subsection{Dificultades en el procesamiento}
  
-En cuanto al NLP podemos darnos cuenta rapidamente de varios problemas que surgen dada la inmensa cantidad de diferencias entre los distintos idiomas existentes en nuestro planeta. No es igual el uso de pronombres en todas las lenguas , incluso en algunas estos se encuentran incluidos en la palabra a la que refieren como se dan los casos en el idioma alemán. Muchos otros idiomas tienen distintas estructuras y orden a pesar de que hayan muchas características comunes como el sujeto y el predicado.
+En cuanto al NLP podemos darnos cuenta rápidamente de varios problemas que surgen dada la inmensa cantidad de diferencias entre los distintos idiomas existentes en nuestro planeta. No es igual el uso de pronombres en todas las lenguas, incluso en algunas estos se encuentran incluidos en la palabra a la que refieren como se dan los casos en el idioma alemán. Muchos otros idiomas tienen distintas estructuras y orden a pesar de que hayan muchas características comunes como el sujeto y el predicado.
 
 Incluso podemos tener en cuenta que hay palabras existentes en algunos idiomas que en otros no, al igual que contracciones y palabras nativas de la jerga local. Además, no siempre los organismos ofciciales encargados de cada lengua se encuentran al día con la evolución de su respectivo idioma.
 
@@ -123,6 +124,7 @@ La definición de entidad nombrada se puede ver formalmente en los designadores 
 \item universidad: No es una entidad nombrada, puede representar entidades diferentes.
 \item Facultad de Matemática y Computación de la Universidad de La Habana: Entidad nombrada
 \item UH: Entidad nombrada
+\item \$2: Entidad nombrada
 \end{itemize}
 
 \subsection{Problemas}
@@ -139,7 +141,7 @@ Las categorías son grupos a los que las entidades nombradas pertenecen. La vari
 
 \item Universidad de La Habana: Organización
 \item La Habana: Lugar
-\item Nombre Random: Persona %TODO Poner nombre de verdad :(
+\item Luis Ernesto: Persona
 
 \end{itemize}
 
@@ -148,7 +150,7 @@ Las categorías son grupos a los que las entidades nombradas pertenecen. La vari
 La asignación de categorías a las entidades presentan varios problemas. Uno de ellos es seleccionar el conjunto de categorías en las que se va a mover las entidades nombradas, teniendo mucho peso el contexto del problema, por ejemplo si se está analizando un conjunto de datos sobre música, podrían ser relevantes tener las categorías de disquera, músico, etc, las cuales extraigan información relevante de los documentos. Un problema común es la propia ambigüedad del lenguaje, por ejemplo, en el caso de que exista una organización y un lugar llamados iguales se complica la clasificación de este ya que dado el contexto podría ser cualquiera de las dos. Por ejemplo, se tienen las oraciones: \emph{said Harry You, CEO of HearingPoint} y \emph{For this year’s second quarter, You said the
 company’s} \cite{semi_sup_for_ner}, en estos campos ambos \emph{You} corresponden al nombre de una misma persona, pero el segundo se puede clasificar como un pronombre personal también, que en cuyo caso no sería una entidad nombrada.
 
-\section{Extracción de Entidades Nombradas}
+\section{Extracción de Entidades Nombradas (NER)}
 
 Dada las definiciones anteriores el problema de Reconocimiento de Entidades Nombradas se puede definir como la extracción y clasificación de las entidades nombradas de un texto. Como dice en la definición, el problema se divide en dos partes fundamentales: extracción y clasificación.
 
@@ -158,7 +160,7 @@ La extracción de entidades consiste en extraer del texto las entidades existent
 
 \subsubsection{POS Tagging}
 
-El objetivo de este subproblema es anotar una secuencia de tokens con la parte de la oración que representa, estas partes dependen del idioma y del conjunto seleccionado por el personal que realice el software en dependencia de la necesidad del software creado. En este caso nos enfocaremos en el idioma inglés en el cual existen 9 tipos de POS importantes de los que sobrealen: sustantivo, verbo, adjetivo, preposición, pronombre y adverbio. En la literatura existen otros conjuntos de etiquetas basados en las partes mencionadas anteriores pero que agregan otros datos como si se está en plural o singular, tiempo del verbo etc, entre estos se encuentran:
+El objetivo de este subproblema es anotar una secuencia de tokens con la parte de la oración que representa, estas partes dependen del idioma y del conjunto seleccionado por el personal que realice el software en dependencia de la necesidad del programa. En este caso nos enfocaremos en el idioma inglés en el cual existen 9 tipos de POS importantes de los que sobrealen: sustantivo, verbo, adjetivo, preposición, pronombre y adverbio, los cuales son horizontales a la mayoría de los lenguajes. En la literatura existen otros conjuntos de etiquetas basados en las partes mencionadas anteriores pero que agregan otros datos como si se está en plural o singular, tiempo del verbo etc, entre estos se encuentran:
 
 \begin{itemize}
 \item Penn Treebank \cite{pennpostag}
@@ -190,7 +192,7 @@ Para resolver este problema se han ideado diferentes aproximaciones:
 
 %Sobre este árbol se realizan diferentes algoritmos para la extracción de entidades nombradas:
 
-Esta etapa se puede ver como un problema de segmentación en la cual se quiere particionar los tokens anotados previamente con las etiquetas POS en conjuntos que identifiquen las entidades nombradas.
+Esta etapa se puede ver como un problema de segmentación en la cual se quiere particionar los tokens, generalmente anotados previemente con las etiquetas POS, en conjuntos que identifiquen las entidades nombradas.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{namedentity.jpg}
@@ -224,6 +226,8 @@ Esta parte del problema es la encargada de clasificar todas las entidades extra�
 
 \end{itemize}
 
+Otra vía más directa de clasificación de entidades es el uso de bases de conocimiento. Estas se pueden usar para buscar las entidades directamente y anotarlas en dependencia de dónde se encontró. Además con el uso de expresiones regulares es posible clasificar las entidades, por ejemplo: expresiones como \emph{Dr.} y \emph{MSc.} son comunmente usados en personas.
+
 \subsection{Software}
 
 Para la extracción de entidades nombradas existen varios softwares, entre los más importantes se presentan:
@@ -239,9 +243,11 @@ Para la extracción de entidades nombradas existen varios softwares, entre los m
 
 Todas estas herramientas, además de reconocimiento de entidades, permiten realizar diferentes operaciones orientadas al procesamiento de lenguaje natural.
 
-\section{Problemas}
+\section{Problemas Generales de NER}
 
-La extracción de entidades nombradas incurre en diferentes problemas uno de ellos está relacionado principalmente con el corpus usado para el entrenamiento del sistema. En general los corpus existentes se han entrenado en un ambiente relativamente cerrado y uniforme, por ejemplo, Wikipedia, periódicos, artículos científicos. Esto tiene como consecuencia que si se usa este sistema en un ambiente no relacionado o estructurado de manera similar el rendimiento baje. Un ejemplo clásico en el cual esto ocurre es en Twitter, debido a la gran cantidad de temas en los que se habla, la cantidad limitada de 140 caracteres, la ausencia de reglas para escribir,  entre otros elementos hace que los NER se desempeñen de manera pobre. Este problema es abordado en \cite{tweeter}, en este artículo sus escritores lograron reducir los errores en el POS hasta un 41\% con respecto al Standford POS Tagger y logrando una métrica F1 final de 0.59 en comparación con 0.29 del Standford NER.
+La extracción de entidades nombradas incurren en diferentes problemas uno de ellos está relacionado principalmente con el corpus usado para el entrenamiento del sistema. La creación de corupus de manera manual es uno de los principales problemas que tiene el aprendizaje supervisado, rango en el cual caen la mayoría de los algoritmos vistos. Para la creación del corpus, lingüistas necesitan dedicar varias horas en esta tarea para poder lograr una cantidad relevante de documentos anotados con calidad. En este aspecto se han hecho esfuerzos en métodos de aprendizaje semisupervisado que asistan en la tarea. %TODO Agreagr los esfuerzos realizados.
+
+En general los corpus existentes se han entrenado en un ambiente relativamente cerrado y uniforme, por ejemplo, Wikipedia, periódicos, artículos científicos, esto tiene como consecuencia que si se usa este sistema en un ambiente no relacionado o estructurado de manera similar el rendimiento baje. Un ejemplo clásico en el cual esto ocurre es en Twitter, debido a la gran cantidad de temas en los que se habla, la cantidad limitada de 140 caracteres, la ausencia de reglas para escribir,  entre otros elementos hace que los NER se desempeñen de manera pobre. Este problema es abordado en \cite{tweeter}, en este artículo sus escritores lograron reducir los errores en el POS hasta un 41\% con respecto al Standford POS Tagger y logrando una métrica F1 final de 0.59 en comparación con 0.29 del Standford NER. 
 
 Otro problema relacionado con el corpus es el inherente error humano y la propia ambigüedad del lenguaje, esto hace que en oraciones con la misma sintaxis y semántica las anotaciones difieran por errores humanos, pudiendo llevar en el peor de los casos a variar el rendimiento del sistema en un 5\% \cite{posdecisiontree}. Aunque en general los anotadores humanos son hasta ahora la manera más fiable de obtener información anotada correctamente, esto requiere del trabajo manual de estos lo cual se hace en muchos casos impracticable debido al gran volumen de datos que se procesa hoy en día.
 
@@ -253,6 +259,17 @@ En la recuparación de información la extracción se puede usar para mejorar la
 
 En la construcción de un sistema de atención al cliente la extracción de entidades puede ayudar a dirigir la queja del cliente al departamento que se le asocie automáticamente. Esto es posible ya que en estos mensajes generalmente están los distintos productos y lugares en dónde se detectó el problema, pudiendo extraer esta información y posteriormente enviándole el mensaje al departamento asignado. Por ejemplo: \emph{Etecsa, la conexión en La Habana está terrible en el horario de 8 a 11 de la noche}, en el mensaje anterior la queja se enviará al departamento de Etecsa en La Habana.
 
+Otras áreas en las que se usa la extracción de entidades son: \cite{ner_thesis}
+
+\begin{itemize}
+
+\item Traducción de máquina
+\item Sistemas de Pregunta y Respuesta
+\item Creación Automática de Resúmenes
+\item Análisis de Sentimiento
+\item Creación de clústers de documentos
+
+\end{itemize}
 
 \section{Conclusiones}
 
@@ -403,6 +420,10 @@ Towards Data Science, \url{https://towardsdatascience.com/named-entity-recogniti
 Wenhui Liao, Sriharsha Veeramachaneni: A Simple Semi-supervised Algorithm For
 Named Entity Recognition. In: 9th International Proceedings
 on Proceedings, pp. 1--2. Publisher, Location (2010)
+
+\bibitem[NERTHS]{ner_thesis}
+Ing. Michal Konkol: Named Entity Recognition, pp. 1--2. University of West Bohemia, Faculty of Applied Sciences, Department of Computer Science and Engineering (2015)
+
 
 \end{thebibliography}
 \end{document}
