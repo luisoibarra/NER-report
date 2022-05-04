@@ -6,11 +6,11 @@
 \backcite {semi_sup_for_ner}{{5}{4.2}{subsection.1.4.2}}
 \backcite {chunking}{{5}{5.1}{subsection.1.5.1}}
 \backcite {postag}{{5}{5.1}{subsection.1.5.1}}
-\backcite {pennpostag}{{6}{5.1}{section*.2}}
-\backcite {brownpostag}{{6}{5.1}{section*.2}}
+\backcite {pennpostag}{{5}{5.1}{section*.2}}
+\backcite {brownpostag}{{5}{5.1}{section*.2}}
 \backcite {postag}{{6}{5.1}{section*.2}}
 \backcite {hmm}{{6}{5.1}{section*.2}}
-\backcite {nltkgrammar}{{7}{5.1}{figure.1.1}}
+\backcite {nltkgrammar}{{6}{5.1}{figure.1.1}}
 \backcite {spacy_nlp}{{7}{5.3}{subsection.1.5.3}}
 \backcite {standford_nlp}{{7}{5.3}{subsection.1.5.3}}
 \backcite {gate_nlp}{{7}{5.3}{subsection.1.5.3}}
